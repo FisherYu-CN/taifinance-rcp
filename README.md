@@ -163,7 +163,7 @@ If you'd like to use plain inline styles this is possible with a few modificatio
 
 **1. Configure Isomorphic Tools to Accept CSS**
 
-In `webpack-isomorphic-tools.js` add **css** to the list of style module extensions
+In `webpack-isomorphic-tools-configuration.js` add **css** to the list of style module extensions
 
 ```javascript
     style_modules: {

@@ -37,7 +37,7 @@ app.use(webpackDevMiddleware(compiler, serverOptions));
 app.use(webpackHotMiddleware(compiler));
 
 // 启动express服务器实例
-app.listen(port, (err) => {
+app.listen(port, function(err) {
     if (err) {
         console.error(err);
     } else {
