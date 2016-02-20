@@ -8,7 +8,6 @@
 export default function clientMiddleware(client) {
     return ({ dispatch, getState }) => {
         return next => action => {
-
             // 当接收到的action是一个函数(thunk)，调用该函数生成具体的action并返回
             // 类似于react-thunk，允许action creator访问dispatch和getState函数
             if (typeof action === 'function') {
