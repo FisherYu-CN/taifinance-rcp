@@ -10,7 +10,7 @@ import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import { InfoBar } from 'components';
 import { pushState } from 'redux-router';
-import connectData from 'helpers/connectData';
+import connectData from 'decorators/connectData';
 import config from '../../config';
 
 function fetchData(getState, dispatch) {

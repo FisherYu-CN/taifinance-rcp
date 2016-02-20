@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import * as widgetActions from 'redux/modules/widgets';
 import {isLoaded, load as loadWidgets} from 'redux/modules/widgets';
 import {initializeWithKey} from 'redux-form';
-import connectData from 'helpers/connectData';
+import connectData from 'decorators/connectData';
 import { WidgetForm } from 'components';
 
 function fetchDataDeferred(getState, dispatch) {

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import React from 'react';
 import { div } from 'react-dom';
-import connectData from '../connectData';
+import connectData from '../../decorators/connectData';
 
 describe('connectData', () => {
   let fetchData;
