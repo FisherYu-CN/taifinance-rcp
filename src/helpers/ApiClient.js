@@ -1,3 +1,10 @@
+/**
+ * @file    ApiClient为客户端和服务端提供统一的与API server通信的facade。在服务端，ApiClient
+ *          接受一个请求对象，从而可以将会话cookie传递到API server来保持会话状态。ApiClient会
+ *          被传递给redux中间件，所以在action creator中可以访问到ApiClient的实例，具体方式是
+ *          为生成的action定义一个promise属性，该属性接受一个以ApiClient实例作为唯一参数的函数。
+ */
+
 import superagent from 'superagent';
 import config from '../config';
 
@@ -21,13 +28,7 @@ const formatUrl = (path) => {
     return '/api' + adjustedPath;
 };
 
-/*
- * This silly underscore is here to avoid a mysterious "ReferenceError: ApiClient is not defined" error.
- * See Issue #14. https://github.com/erikras/react-redux-universal-hot-example/issues/14
- *
- * Remove it at your own risk.
- */
-class _ApiClient {
+export default class ApiClient {
 
     constructor(req) {
 
@@ -59,7 +60,3 @@ class _ApiClient {
 
     }
 }
-
-const ApiClient = _ApiClient;
-
-export default ApiClient;
