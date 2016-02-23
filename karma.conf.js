@@ -13,7 +13,7 @@ module.exports = function(config) {
 
         // 在持续集成环境中，karma会启动并捕获所有配置的浏览器
         // 并一次性在所有浏览器运行所有的测试用例并返回结果
-        singleRun: !!process.env.CONTINUOUS_INTEGRATION,
+        singleRun: !!process.env.CI,
 
         // 使用mocha框架进行测试
         frameworks: ['mocha'],

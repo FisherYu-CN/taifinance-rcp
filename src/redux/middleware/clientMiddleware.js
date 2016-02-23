@@ -24,15 +24,18 @@ export default function clientMiddleware(client) {
             // 获取定义的请求/请求成功/请求失败三种Action类型
             const [REQUEST, SUCCESS, FAILURE] = types;
             next({ ...rest, type: REQUEST });
-            return promise(client)  // 为promise生成器提供ApiClient对象
-                .then(
-                    (result) => next({ ...rest, result, type: SUCCESS }),
-                    (error) => next({ ...rest, error, type: FAILURE })
-                )
-                .catch((error)=> {
-                    console.error('MIDDLEWARE ERROR:', error);
-                    next({ ...rest, error, type: FAILURE });
-                });
+
+            // 为promise生成器提供ApiClient对象
+            const actionPromise = promise(client);
+            actionPromise.then(
+                (result) => next({...rest, result, type: SUCCESS}),
+                (error) => next({...rest, error, type: FAILURE})
+            ).catch((error)=> {
+                console.error('MIDDLEWARE ERROR:', error);
+                next({...rest, error, type: FAILURE});
+            });
+
+            return actionPromise;
         };
     };
 }

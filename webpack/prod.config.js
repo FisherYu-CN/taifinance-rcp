@@ -2,7 +2,7 @@
  * @file    生产环境下webpack及相关插件详细配置
  */
 
-require('babel/polyfill');
+require('babel-polyfill');
 
 var path = require('path');
 var webpack = require('webpack');
@@ -82,23 +82,23 @@ module.exports = {
         // 将提取到的CSS样式保存在单独的文件中，而不是使用内联的<style/>标签
         new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true }),
 
-        // 忽略所有开发环境配置信息
-        new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
-
         // 定义全局变量
         new webpack.DefinePlugin({
+
+            // 设定Node环境变量为生产模式，可以有效减少客户端类库文件的大小
+            'process.env': {
+                NODE_ENV: '"production"'
+            },
 
             // 基本变量
             __CLIENT__: true,
             __SERVER__: false,
             __DEVELOPMENT__: false,
-            __DEVTOOLS__: false,
-
-            // 设定Node环境变量为生产模式，可以有效减少客户端类库文件的大小
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
+            __DEVTOOLS__: false
         }),
+
+        // 忽略所有开发环境配置信息
+        new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
 
         // 去除重复的文件
         new webpack.optimize.DedupePlugin(),

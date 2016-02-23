@@ -27,7 +27,7 @@ const formatUrl = (path) => {
  *
  * Remove it at your own risk.
  */
-class ApiClient {
+class _ApiClient {
 
     constructor(req) {
 
@@ -59,5 +59,7 @@ class ApiClient {
 
     }
 }
+
+const ApiClient = _ApiClient;
 
 export default ApiClient;

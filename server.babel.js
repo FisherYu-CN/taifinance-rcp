@@ -16,4 +16,4 @@ try {
 }
 
 // 启用babel转译
-require('babel-core/register')(babelrcObject);
+require('babel-register')(babelrcObject);

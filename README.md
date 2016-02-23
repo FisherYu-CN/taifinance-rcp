@@ -24,8 +24,7 @@ This is a starter boilerplate app I've put together using the following technolo
 * [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
 * [Redux](https://github.com/rackt/redux)'s futuristic [Flux](https://facebook.github.io/react/blog/2014/05/06/flux.html) implementation
 * [Redux Dev Tools](https://github.com/gaearon/redux-devtools) for next generation DX (developer experience). Watch [Dan Abramov's talk](https://www.youtube.com/watch?v=xsSnOQynTHs).
-* [Redux Router](https://github.com/acdlite/redux-router) Keep your router state in your Redux store
-  - There is a migration in progress to [Redux Simple Router](https://github.com/jlongster/redux-simple-router/). Please test it out in the [simple-router](https://github.com/erikras/react-redux-universal-hot-example/tree/simple-router) branch! 
+* [React Router Redux](https://github.com/reactjs/react-router-redux) Redux/React Router bindings.
 * [ESLint](http://eslint.org) to maintain a consistent code style
 * [redux-form](https://github.com/erikras/redux-form) to manage form state in Redux
 * [lru-memoize](https://github.com/erikras/lru-memoize) to speed up form validation
@@ -60,10 +59,10 @@ The first time it may take a little while to generate the first `webpack-assets.
 - <kbd>CTRL</kbd>+<kbd>Q</kbd> Move DevTools Dock Position
 - see [redux-devtools-dock-monitor](https://github.com/gaearon/redux-devtools-dock-monitor) for more detailed information.
 
-If you have the 
+If you have the
 [Redux DevTools chrome extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) installed it will automatically be used on the client-side instead.
 
-If you want to disable the dev tools during development, set `__DEVTOOLS__` to `false` in `/webpack/dev.config.js`.  
+If you want to disable the dev tools during development, set `__DEVTOOLS__` to `false` in `/webpack/dev.config.js`.
 DevTools are not enabled during production.
 
 ## Building and Running Production Server
@@ -82,6 +81,7 @@ A demonstration of this app can be seen [running on heroku](https://react-redux.
 * [Exploring the Demo App](docs/ExploringTheDemoApp/ExploringTheDemoApp.md) is a guide that can be used before you install the kit.
 * [Installing the Kit](docs/InstallingTheKit/InstallingTheKit.md) guides you through installation and running the development server locally.
 * [Adding Text to the Home Page](docs/AddingToHomePage/AddingToHomePage.md) guides you through adding "Hello, World!" to the home page.
+* [Adding A Page](docs/AddingAPage/AddingAPage.md) guides you through adding a new page.
 * [React Tutorial - Converting Reflux to Redux](http://engineering.wework.com/process/2015/10/01/react-reflux-to-redux/), by Matt Star
    If you are the kind of person that learns best by following along a tutorial, I can recommend Matt Star's overview and examples.
 
@@ -163,7 +163,7 @@ If you'd like to use plain inline styles this is possible with a few modificatio
 
 **1. Configure Isomorphic Tools to Accept CSS**
 
-In `webpack-isomorphic-tools-configuration.js` add **css** to the list of style module extensions
+In `webpack-isomorphic-tools.js` add **css** to the list of style module extensions
 
 ```javascript
     style_modules: {
@@ -199,7 +199,7 @@ require('aModule/dist/style.css');
 ...
 ```
 
-**NOTE** In order to use this method with **scss or less** files one more modification must be made. In both `dev.config.js` and `prod.config.js` in the loaders for less and scss files remove 
+**NOTE** In order to use this method with **scss or less** files one more modification must be made. In both `dev.config.js` and `prod.config.js` in the loaders for less and scss files remove
 
 1. `modules`
 2. `localIdentName...`
@@ -240,19 +240,18 @@ The first deploy might take a while, but after that your `node_modules` dir shou
 This project moves fast and has an active community, so if you have a question that is not answered below please visit our [Discord channel](https://discord.gg/0ZcbPKXt5bZZb1Ko) or file an issue.
 
 
-## Roadmap 
+## Roadmap
 
-Although this isn't a library, we recently started versioning to make it easier to track breaking changes and emerging best practices. 
+Although this isn't a library, we recently started versioning to make it easier to track breaking changes and emerging best practices.
 
-* [Babel 6](https://github.com/babel/babel) - Coming soon with v1 (see [#488](https://github.com/erikras/react-redux-universal-hot-example/issues/488))
 * [Inline Styles](docs/InlineStyles.md) - CSS is dead
 
 ## Contributing
 
-I am more than happy to accept external contributions to the project in the form of feedback, bug reports and even better - pull requests :) 
+I am more than happy to accept external contributions to the project in the form of feedback, bug reports and even better - pull requests :)
 
-If you would like to submit a pull request, please make an effort to follow the guide in [CONTRIBUTING.md](CONTRIBUTING.md). 
- 
+If you would like to submit a pull request, please make an effort to follow the guide in [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ---
 Thanks for checking this out.
 

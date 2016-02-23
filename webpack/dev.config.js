@@ -2,7 +2,7 @@
  * @file    开发环境下webpack及相关插件详细配置
  */
 
-require('babel/polyfill');
+require('babel-polyfill');
 
 var fs = require('fs');
 var path = require('path');
@@ -30,23 +30,33 @@ try {
 
 // 根据配置信息，构建babel loader的查询字符串
 var babelrcObjectDevelopment = babelrcObject.env && babelrcObject.env.development || {};
-var babelLoaderQuery = Object.assign({}, babelrcObject, babelrcObjectDevelopment);
+
+var combinedPlugins = babelrcObject.plugins || [];
+combinedPlugins = combinedPlugins.concat(babelrcObjectDevelopment.plugins);
+
+var babelLoaderQuery = Object.assign({}, babelrcObjectDevelopment, babelrcObject, {plugins: combinedPlugins});
 delete babelLoaderQuery.env;
 
 // 开发环境中需要babel的react-transform插件，以支持对react组件的热重载
 babelLoaderQuery.plugins = babelLoaderQuery.plugins || [];
-if (babelLoaderQuery.plugins.indexOf('react-transform') < 0) {
-    babelLoaderQuery.plugins.push('react-transform');
+var reactTransform = null;
+for (var i = 0; i < babelLoaderQuery.plugins.length; ++i) {
+    var plugin = babelLoaderQuery.plugins[i];
+    if (Array.isArray(plugin) && plugin[0] === 'react-transform') {
+        reactTransform = plugin;
+    }
 }
 
-babelLoaderQuery.extra = babelLoaderQuery.extra || {};
-if (!babelLoaderQuery.extra['react-transform']) {
-    babelLoaderQuery.extra['react-transform'] = {};
+if (!reactTransform) {
+    reactTransform = ['react-transform', {transforms: []}];
+    babelLoaderQuery.plugins.push(reactTransform);
 }
-if (!babelLoaderQuery.extra['react-transform'].transforms) {
-    babelLoaderQuery.extra['react-transform'].transforms = [];
+
+if (!reactTransform[1] || !reactTransform[1].transforms) {
+    reactTransform[1] = Object.assign({}, reactTransform[1], {transforms: []});
 }
-babelLoaderQuery.extra['react-transform'].transforms.push({
+
+reactTransform[1].transforms.push({
     transform: 'react-transform-hmr',
     imports: ['react'],
     locals: ['module']

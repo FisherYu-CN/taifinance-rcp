@@ -2,7 +2,7 @@
  * @file    应用基本配置信息
  */
 
-require('babel/polyfill');
+require('babel-polyfill');
 
 const environment = {
     development: {
