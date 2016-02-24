@@ -2,7 +2,7 @@
  * @file    webpack开发服务器启动与配置脚本
  */
 
-var express = require('express');
+var Express = require('express');
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
@@ -30,7 +30,7 @@ var serverOptions = {
 };
 
 // 新建express服务器实例
-var app = new express();
+var app = new Express();
 
 // 添加webpack开发与热重载中间件
 app.use(webpackDevMiddleware(compiler, serverOptions));
