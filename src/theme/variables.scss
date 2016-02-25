@@ -1,24 +1,62 @@
 /**
- *  Define scss variables here.
- *
- *  Available options for Bootstrap:
- *  http://getbootstrap.com/customize/
- *
+ *  定义scss变量
  */
 
-// Custom Colors
-$cyan: #33e0ff;
-$humility: #777;
+//// Custom Colors
+//$cyan: #33e0ff;
+//$humility: #777;
+//
+//// Bootstrap Variables
+//$brand-primary: darken(#428bca, 6.5%);
+//$brand-secondary: #e25139;
+//$brand-success: #5cb85c;
+//$brand-warning: #f0ad4e;
+//$brand-danger: #d9534f;
+//$brand-info: #5bc0de;
+//
+//$text-color: #333;
+//
+//$font-size-base: 14px;
+//$font-family-sans-serif: "Helvetica Neue", Helvetica, sans-serif;
 
-// Bootstrap Variables
-$brand-primary: darken(#428bca, 6.5%);
-$brand-secondary: #e25139;
-$brand-success: #5cb85c;
-$brand-warning: #f0ad4e;
-$brand-danger: #d9534f;
-$brand-info: #5bc0de;
+// 字体
+$font-stack: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-$text-color: #333;
+// 基本颜色
+$navy: #1ab394;           // Primary颜色
+$dark-gray: #c2c2c2;      // Default颜色
+$blue: #1c84c6;           // Success颜色
+$lazur: #23c6c8;          // Info颜色
+$yellow: #f8ac59;         // Warrning颜色
+$red: #ed5565;            // Danger颜色
 
-$font-size-base: 14px;
-$font-family-sans-serif: "Helvetica Neue", Helvetica, sans-serif;
+// 其他颜色
+$text-color: #676a6c;           // Body text
+$gray: #f3f3f4;                 // Background wrapper color
+$light-gray: #d1dade;           // Default label, badget
+$label-badget-color: #5e5e5e;
+$light-blue: #f3f6fb;
+
+// Spiner颜色和边距
+$spin-color: $navy;
+$spin-margin: 0 auto;
+
+// IBOX颜色
+$border-color: #e7eaec;
+$ibox-title-bg: white;
+$ibox-content-bg: white;
+
+// 侧边栏宽度
+$sidebar-width: 220px;
+
+// Boxed布局宽度
+$boxed-width: 1200px;
+$boxed-backgound: url("images/shattered.png");
+
+// 按钮的边框弧度
+$btn-border-radius: 3px;
+
+// 导航栏
+$nav-bg: #2f4050;
+$nav-profil-pattern: url("images/header-profile.png") no-repeat;
+$nav-text-color: #a7b1c2;

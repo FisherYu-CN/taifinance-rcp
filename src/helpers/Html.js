@@ -1,58 +1,56 @@
-import React, {Component, PropTypes} from 'react';
+/**
+ * @file    Html是一个包装组件，其中包含了HTML元数据以及模板标签，用在服务端代码中来包装
+ *          渲染路由组件得到的字符串输出。该组件没有(也不能)包含HTML文档类型的声明，需要
+ *          在server.js中额外添加到渲染后的输出结果之中。
+ */
+
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
 
-/**
- * Wrapper component containing HTML metadata and boilerplate tags.
- * Used in server-side code only to wrap the string output of the
- * rendered route component.
- *
- * The only thing this component doesn't (and can't) include is the
- * HTML doctype declaration, which is added to the rendered output
- * by the server.js file.
- */
 export default class Html extends Component {
-  static propTypes = {
-    assets: PropTypes.object,
-    component: PropTypes.node,
-      store: PropTypes.object
-  };
 
-  render() {
-      const {assets, component, store} = this.props;
-    const content = component ? ReactDOM.renderToString(component) : '';
-    const head = Helmet.rewind();
+    // 定义可接受的property的类型
+    static propTypes = {
+        assets: PropTypes.object,
+        component: PropTypes.node,
+        store: PropTypes.object
+    };
 
-    return (
-      <html lang="en-us">
-        <head>
-          {head.base.toComponent()}
-          {head.title.toComponent()}
-          {head.meta.toComponent()}
-          {head.link.toComponent()}
-          {head.script.toComponent()}
+    render() {
+        const { assets, component, store } = this.props;
+        const content = component ? ReactDOM.renderToString(component) : '';
+        const head = Helmet.rewind();
 
-          <link rel="shortcut icon" href="/favicon.ico" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          {/* styles (will be present only in production with webpack extract text plugin) */}
-          {Object.keys(assets.styles).map((style, key) =>
-            <link href={assets.styles[style]} key={key} media="screen, projection"
-                  rel="stylesheet" type="text/css" charSet="UTF-8"/>
-          )}
+        return (
+            <html lang="en-us">
+            <head>
+                { head.base.toComponent() }
+                { head.title.toComponent() }
+                { head.meta.toComponent() }
+                { head.link.toComponent() }
+                { head.script.toComponent() }
 
-          {/* (will be present only in development mode) */}
-          {/* outputs a <style/> tag with all bootstrap styles + App.scss + it could be CurrentPage.scss. */}
-          {/* can smoothen the initial style flash (flicker) on page load in development mode. */}
-          {/* ideally one could also include here the style for the current page (Home.scss, About.scss, etc) */}
-          { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js') + require('../containers/App/App.scss')._style}}/> : null }
-        </head>
-        <body>
-          <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
-          <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
-          <script src={assets.javascript.main} charSet="UTF-8"/>
-        </body>
-      </html>
-    );
-  }
+                <link rel="shortcut icon" href="/favicon.ico" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+                {/* CSS样式文件，仅在生产环境中存在，由webpack的extract text插件生成 */}
+                { Object.keys(assets.styles).map((style, key) =>
+                    <link href={assets.styles[style]} key={key} media="screen, projection"
+                          rel="stylesheet" type="text/css" charSet="UTF-8"/>
+                )}
+
+                {/* CSS内联样式，仅在开发环境中存在，输出一个包含所有bootstrap以及其他定制样式的<style>标签 */}
+                {/* 使用内联样式可以使开发模式下页面加载时更加流畅，理想情况下，这里也可以包含当前页面的样式 */}
+                { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js') + require('../containers/App/App.scss')._style}}/> : null }
+            </head>
+            <body>
+                <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
+                <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
+                <script src={assets.javascript.main} charSet="UTF-8"/>
+            </body>
+            </html>
+        );
+    }
 }
