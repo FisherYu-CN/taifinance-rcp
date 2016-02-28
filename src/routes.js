@@ -5,17 +5,7 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
-import {
-    App,
-    Chat,
-    Home,
-    Widgets,
-    About,
-    Login,
-    LoginSuccess,
-    Survey,
-    NotFound
-} from 'containers';
+import { App, Landing, Signin, Signup, Portal, Home, NotFound } from 'containers';
 
 export default (store) => {
 
@@ -32,11 +22,12 @@ export default (store) => {
          * 检查鉴权，当没有登录时跳转到相应页面
          */
         const checkAuth = () => {
+            /**
             const { auth: { user }} = store.getState();
             if (!user) {
                 // 没有登录，跳转到主页
-                replace('/');
-            }
+                replace('/login');
+            }*/
             cb();
         };
 
@@ -47,23 +38,21 @@ export default (store) => {
         }
     };
 
-    // 路由定义时请按照字母顺序排列以方便查找
     return (
         <Route path="/" component={App}>
             { /* 主页路由 */ }
-            <IndexRoute component={Home}/>
+            <IndexRoute component={Landing}/>
 
             { /* 需要登录的路由 */ }
             <Route onEnter={requireLogin}>
-                <Route path="chat" component={Chat}/>
-                <Route path="loginSuccess" component={LoginSuccess}/>
+                <Route path="portal" component={Portal}>
+                    <Route path="home" component={Home} />
+                </Route>
             </Route>
 
             { /* 其他路由 */ }
-            <Route path="about" component={About}/>
-            <Route path="login" component={Login}/>
-            <Route path="survey" component={Survey}/>
-            <Route path="widgets" component={Widgets}/>
+            <Route path="signin" component={Signin}/>
+            <Route path="signup" component={Signup}/>
 
             { /* 都不匹配时的默认路由 */ }
             <Route path="*" component={NotFound} status={404} />

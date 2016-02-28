@@ -43,10 +43,10 @@ export default class Html extends Component {
 
                 {/* CSS内联样式，仅在开发环境中存在，输出一个包含所有bootstrap以及其他定制样式的<style>标签 */}
                 {/* 使用内联样式可以使开发模式下页面加载时更加流畅，理想情况下，这里也可以包含当前页面的样式 */}
-                { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js') + require('../containers/App/App.scss')._style}}/> : null }
+                { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js')}}/> : null }
             </head>
             <body>
-                <div id="wrapper" dangerouslySetInnerHTML={{__html: content}}/>
+                <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
                 <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
                 <script src={assets.javascript.main} charSet="UTF-8"/>
             </body>
