@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Header, Sidebar, Footer } from '../../components';
+import { Header, Sidebar, Footer } from 'components';
 
 export default class Portal extends Component {
 

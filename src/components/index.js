@@ -1,3 +1,4 @@
 export Header from './Header/Header';
-export Navigation from './Sidebar/Sidebar';
+export Sidebar from './Sidebar/Sidebar';
+export SidebarNavItem from './SidebarNavItem/SidebarNavItem';
 export Footer from './Footer/Footer';
