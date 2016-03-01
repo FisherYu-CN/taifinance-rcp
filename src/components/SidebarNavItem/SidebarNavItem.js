@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
+import NavItem from 'react-bootstrap/lib/NavItem';
+import {LinkContainer} from 'react-router-bootstrap';
 
 export default class SidebarNavItem extends Component {
 
@@ -7,30 +9,34 @@ export default class SidebarNavItem extends Component {
         title: PropTypes.string.isRequired,     // 标题
         href: PropTypes.string.isRequired,      // 指向页面的url
         iconClass: PropTypes.string,            // 图标class名称
-        active: PropTypes.bool,                 // 是否激活
-        children: PropTypes.object              // 子菜单
+        level: PropTypes.number,                // 所属菜单层级
+        children: PropTypes.object              // 嵌套的子级菜单
     };
 
     // 组件渲染逻辑
     render() {
 
-        const {title, href, iconClass, active, children} = this.props;
+        const {title, href, iconClass, level, children} = this.props;
+
+        // 如果存在子级菜单，为子级菜单的层级+1
+        const childrenWithLevel = children && React.cloneElement(React.Children.only(children), { level: level + 1 });
 
         return (
-            <li className={active ? 'active' : ''}>
-                <a href={href}>
-                    { /* 菜单项图标 */ }
-                    {iconClass && <i className={'fa ' + iconClass}></i>}
+            <LinkContainer to={href}>
+                <NavItem>
+                    { /* 菜单项图标, 当level为undefined时，表示属于第一层菜单，需要渲染图标 */ }
+                    {iconClass && !level && <i className={'fa ' + iconClass}></i>}
 
                     { /* 菜单项标题 */ }
-                    <span className="nav-label">{title}</span>
+                    {level === 1 ? <span className="nav-label"></span> : {title}}
 
-                    { /* 可能嵌套有子级菜单 */ }
-                    {children}
-                </a>
-            </li>
+                    { /* 第二层菜单且存在子级菜单时，需要添加箭头图标 */ }
+                    {level === 2 && children && <span className="fa arrow"></span>}
+
+                    { /* 嵌套的子级菜单 */ }
+                    {childrenWithLevel}
+                </NavItem>
+            </LinkContainer>
         );
     }
 }
-
-
