@@ -4,8 +4,8 @@ export default class SidebarNav extends Component {
 
     // 组件接受的属性
     static propTypes = {
-        level: PropTypes.string,                // 标题
-        children: PropTypes.string.object       // 嵌套的具体菜单项
+        level: PropTypes.number,                            // 标题
+        children: PropTypes.arrayOf(PropTypes.element)      // 嵌套的具体菜单项
     };
 
     // 组件渲染逻辑
@@ -30,8 +30,8 @@ export default class SidebarNav extends Component {
 
         return (
             <ul className={'nav ' + navClass}>
-                {children.map(child => {
-                    React.cloneElement(child, { level: currentLevel });
+                {React.Children.map(children, element => {
+                    return React.cloneElement(element, {level: currentLevel});
                 })}
             </ul>
         );
