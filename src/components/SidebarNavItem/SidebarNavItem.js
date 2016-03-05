@@ -19,11 +19,11 @@ export default class SidebarNavItem extends Component {
         return (
             <li>
                 <a href={href}>
-                    { /* 菜单项图标, 当level为undefined时，表示属于第一层菜单，需要渲染图标 */ }
+                    { /* 菜单项图标, 第一层菜单需要渲染图标 */ }
                     {iconClass && level === 1 && <i className={'fa ' + iconClass}></i>}
 
                     { /* 菜单项标题 */ }
-                    {level === 1 ? <span className="nav-label">{title}</span> : {title}}
+                    {level === 1 ? <span className="nav-label">{title}</span> : title}
 
                     { /* 第二层菜单且存在子级菜单时，需要添加箭头图标 */ }
                     {level === 2 && children && <span className="fa arrow"></span>}

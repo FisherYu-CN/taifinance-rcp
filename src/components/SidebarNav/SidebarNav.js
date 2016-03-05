@@ -4,8 +4,11 @@ export default class SidebarNav extends Component {
 
     // 组件接受的属性
     static propTypes = {
-        level: PropTypes.number,                            // 标题
-        children: PropTypes.arrayOf(PropTypes.element)      // 嵌套的具体菜单项
+        level: PropTypes.number,                            // 所属菜单层级
+        children: React.PropTypes.oneOfType([               // 嵌套的具体菜单项
+            React.PropTypes.element,
+            PropTypes.arrayOf(PropTypes.element)
+        ])
     };
 
     // 组件渲染逻辑

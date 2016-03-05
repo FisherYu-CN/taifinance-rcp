@@ -1,0 +1,72 @@
+.tfmenu .plus-minus, .tfmenu .plus-times {
+  float: right
+}
+
+.tfmenu .arrow {
+  float: right;
+  line-height: 1.42857
+}
+
+.tfmenu .glyphicon.arrow:before {
+  content: "\e079"
+}
+
+.tfmenu .active > a > .glyphicon.arrow:before {
+  content: "\e114"
+}
+
+.tfmenu .fa.arrow:before {
+  content: "\f104"
+}
+
+.tfmenu .active > a > .fa.arrow:before {
+  content: "\f107"
+}
+
+.tfmenu .ion.arrow:before {
+  content: "\f3d2"
+}
+
+.tfmenu .active > a > .ion.arrow:before {
+  content: "\f3d0"
+}
+
+.tfmenu .fa.plus-minus:before, .tfmenu .fa.plus-times:before {
+  content: "\f067"
+}
+
+.tfmenu .active > a > .fa.plus-times {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg)
+}
+
+.tfmenu .active > a > .fa.plus-minus:before {
+  content: "\f068"
+}
+
+.tfmenu .collapse {
+  display: none
+}
+
+.tfmenu .collapse.in {
+  display: block
+}
+
+.tfmenu .collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+  -webkit-transition-duration: .35s;
+  transition-duration: .35s;
+  -webkit-transition-property: height, visibility;
+  transition-property: height, visibility
+}
+
+
+
+
+
+

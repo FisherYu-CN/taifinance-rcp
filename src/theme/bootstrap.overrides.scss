@@ -1,4 +1,24 @@
 /**
- * 覆盖无法通过变量修改的bootstrap样式
+ * 覆盖无法通过变量修改的bootstrap样式。此处暂时引入了全部Inspinia主题样式，后期需要逐步将组件特定的样式
+ * 抽取出来后分离到组件独立的样式文件之中
  */
 
+// 使用360对Google字体的镜像
+@import url("http://fonts.useso.com/css?family=Open+Sans:300,400,600,700&lang=en");
+
+// INSPINIA主题元素
+@import "typography";
+@import "navigation";
+@import "top-navigation";
+@import "buttons";
+@import "badgets-labels";
+@import "elements";
+@import "sidebar";
+@import "base";
+@import "pages";
+@import "chat";
+@import "tfmenu";
+@import "spinners";
+
+// 媒体查询
+@import "media";
