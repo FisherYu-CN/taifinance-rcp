@@ -4,20 +4,33 @@ export default class SidebarNavItem extends Component {
 
     // 组件接受的属性
     static propTypes = {
-        title: PropTypes.string.isRequired,     // 标题
-        href: PropTypes.string.isRequired,      // 指向页面的url
-        iconClass: PropTypes.string,            // 图标class名称
-        level: PropTypes.number,                // 所属菜单层级
-        children: PropTypes.element             // 嵌套的子级菜单
+        title: PropTypes.string.isRequired,         // 标题
+        href: PropTypes.string.isRequired,          // 指向页面的url
+        iconClass: PropTypes.string,                // 图标class名称
+        level: PropTypes.number,                     // 所属菜单层级
+        onlyActiveOnIndex: PropTypes.string,       // 是否只在默认路由情况下激活
+        children: PropTypes.element                 // 嵌套的子级菜单
+    };
+
+    // 组件的上下文环境
+    static contextTypes = {
+        router: React.PropTypes.object
     };
 
     // 组件渲染逻辑
     render() {
 
-        const {title, href, iconClass, level, children} = this.props;
+        const {router} = this.context;
+        const {title, href, iconClass, level, onlyActiveOnIndex, children} = this.props;
+
+        // 判断对应的路由是否被激活
+        let active;
+        if (router) {
+            active = router.isActive(href, onlyActiveOnIndex);
+        }
 
         return (
-            <li>
+            <li className={active ? 'active' : ''}>
                 <a href={href}>
                     { /* 菜单项图标, 第一层菜单需要渲染图标 */ }
                     {iconClass && level === 1 && <i className={'fa ' + iconClass}></i>}
