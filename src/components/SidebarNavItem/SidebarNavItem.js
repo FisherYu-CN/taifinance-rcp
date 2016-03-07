@@ -1,5 +1,14 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as sidebarActions from 'redux/modules/sidebar';
 
+@connect(
+    state => ({
+        sidebar: state.sidebar
+    }),
+    dispatch => bindActionCreators(sidebarActions, dispatch)
+)
 export default class SidebarNavItem extends Component {
 
     // 组件接受的属性
@@ -7,8 +16,8 @@ export default class SidebarNavItem extends Component {
         title: PropTypes.string.isRequired,         // 标题
         href: PropTypes.string.isRequired,          // 指向页面的url
         iconClass: PropTypes.string,                // 图标class名称
-        level: PropTypes.number,                     // 所属菜单层级
-        onlyActiveOnIndex: PropTypes.string,       // 是否只在默认路由情况下激活
+        level: PropTypes.number,                    // 所属菜单层级
+        onlyActiveOnIndex: PropTypes.string,        // 是否只在默认路由情况下激活
         children: PropTypes.element                 // 嵌套的子级菜单
     };
 

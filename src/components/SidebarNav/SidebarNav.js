@@ -5,7 +5,7 @@ export default class SidebarNav extends Component {
     // 组件接受的属性
     static propTypes = {
         level: PropTypes.number,                             // 所属菜单层级
-        children: React.PropTypes.oneOfType([               // 嵌套的具体菜单项
+        children: React.PropTypes.oneOfType([                // 嵌套的具体菜单项
             React.PropTypes.element,
             PropTypes.arrayOf(PropTypes.element)
         ])
@@ -25,10 +25,10 @@ export default class SidebarNav extends Component {
                 navClass = 'tfmenu';
                 break;
             case 2:
-                navClass = 'nav-second-level collpase in';
+                navClass = 'nav-second-level collpase';
                 break;
             default:
-                navClass = 'nav-third-level collpase in';
+                navClass = 'nav-third-level collpase';
         }
 
         return (
