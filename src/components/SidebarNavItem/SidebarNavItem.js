@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {routeActions} from 'react-router-redux';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as sidebarActions from 'redux/modules/sidebar';
@@ -7,24 +8,38 @@ import * as sidebarActions from 'redux/modules/sidebar';
     state => ({
         sidebar: state.sidebar
     }),
-    dispatch => bindActionCreators(sidebarActions, dispatch)
+    dispatch => bindActionCreators(
+        Object.assign({}, sidebarActions, {pushState: routeActions.push}),
+        dispatch
+    )
 )
 export default class SidebarNavItem extends Component {
 
     // 组件接受的属性
     static propTypes = {
         title: PropTypes.string.isRequired,         // 标题
-        href: PropTypes.string.isRequired,          // 指向页面的url
+        href: PropTypes.string,                      // 指向页面的url
         iconClass: PropTypes.string,                // 图标class名称
         level: PropTypes.number,                    // 所属菜单层级
         onlyActiveOnIndex: PropTypes.string,        // 是否只在默认路由情况下激活
-        children: PropTypes.element                 // 嵌套的子级菜单
+        children: PropTypes.element,                 // 嵌套的子级菜单
+        pushState: PropTypes.func                    // 路由跳转函数
     };
 
     // 组件的上下文环境
     static contextTypes = {
         router: React.PropTypes.object
     };
+
+    onClick(event) {
+        event.preventDefault();
+        if (this.props.href && !this.props.children) {
+            this.props.pushState(this.props.href);
+        } else {
+            console.log('ex');
+        }
+
+    }
 
     // 组件渲染逻辑
     render() {
@@ -34,13 +49,13 @@ export default class SidebarNavItem extends Component {
 
         // 判断对应的路由是否被激活
         let active;
-        if (router) {
+        if (router && href) {
             active = router.isActive(href, onlyActiveOnIndex);
         }
 
         return (
             <li className={active ? 'active' : ''}>
-                <a href={href}>
+                <a href={href} onClick={(event) => this.onClick(event)}>
                     { /* 菜单项图标, 第一层菜单需要渲染图标 */ }
                     {iconClass && level === 1 && <i className={'fa ' + iconClass}></i>}
 

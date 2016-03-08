@@ -9,9 +9,9 @@ export default class Sidebar extends Component {
                 <div className="sidebar-collapse">
                     <SidebarNav>
                         <SidebarNavItem href="/portal/home" title="Home" iconClass="fa-home" />
-                        <SidebarNavItem href="/portal/test" title="Test" iconClass="fa-diamond">
+                        <SidebarNavItem title="Test" iconClass="fa-diamond">
                             <SidebarNav>
-                                <SidebarNavItem href="/portal/test/test1" title="Test1">
+                                <SidebarNavItem title="Test1">
                                     <SidebarNav>
                                         <SidebarNavItem href="/portal/test/test1/test11" title="Test11" />
                                         <SidebarNavItem href="/portal/test/test1/test12" title="Test12" />

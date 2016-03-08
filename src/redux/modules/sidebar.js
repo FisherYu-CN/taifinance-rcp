@@ -4,7 +4,7 @@ const SELECT_SIDEBAR_MENU_ITEM = 'taifinance-rcp/sidebar/SELECT';
 const initialState = {
     minimized: false,
     selectedItem: {},
-    folded: true
+    folded: false
 };
 
 export default function reducer(state = initialState, action = {}) {
