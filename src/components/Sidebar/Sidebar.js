@@ -8,19 +8,19 @@ export default class Sidebar extends Component {
             <nav className="navbar-default navbar-static-side">
                 <div className="sidebar-collapse">
                     <SidebarNav>
-                        <SidebarNavItem href="/portal/home" title="Home" iconClass="fa-home" />
-                        <SidebarNavItem title="Test" iconClass="fa-diamond">
+                        <SidebarNavItem id="home" href="/portal/home" title="Home" iconClass="fa-home" />
+                        <SidebarNavItem id="test" title="Test" iconClass="fa-diamond">
                             <SidebarNav>
-                                <SidebarNavItem title="Test1">
+                                <SidebarNavItem id="test1" title="Test1">
                                     <SidebarNav>
-                                        <SidebarNavItem href="/portal/test/test1/test11" title="Test11" />
-                                        <SidebarNavItem href="/portal/test/test1/test12" title="Test12" />
+                                        <SidebarNavItem id="test11" href="/portal/test/test1/test11" title="Test11" />
+                                        <SidebarNavItem id="test12" href="/portal/test/test1/test12" title="Test12" />
                                     </SidebarNav>
                                 </SidebarNavItem>
-                                <SidebarNavItem href="/portal/test/test2" title="Test2" />
+                                <SidebarNavItem id="test2" href="/portal/test/test2" title="Test2" />
                             </SidebarNav>
                         </SidebarNavItem>
-                        <SidebarNavItem href="/portal/user" title="User" iconClass="fa-user" />
+                        <SidebarNavItem id="user" href="/portal/user" title="User" iconClass="fa-user" />
                     </SidebarNav>
                 </div>
             </nav>

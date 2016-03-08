@@ -1,10 +1,10 @@
 const TOGGLE_SIDEBAR = 'taifinance-rcp/sidebar/TOGGLE';
-const SELECT_SIDEBAR_MENU_ITEM = 'taifinance-rcp/sidebar/SELECT';
+const INIT_SIDEBAR_NAV_ITEM_STATUS = 'taifinance-rcp/sidebar/INIT_NAV_ITEM_STATUS';
+const TOGGLE_SIDEBAR_NAV_ITEM = 'taifinance-rcp/sidebar/TOGGLE_NAV_ITEM';
 
 const initialState = {
     minimized: false,
-    selectedItem: {},
-    folded: false
+    navItemsStatus: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -14,21 +14,21 @@ export default function reducer(state = initialState, action = {}) {
         case TOGGLE_SIDEBAR:
             return {...state, minimized: !state.minimized};
 
-        // 选中一个菜单项
-        case SELECT_SIDEBAR_MENU_ITEM: {
-            if (state.selectedItem.title === action.item.title
-                && state.selectedItem.href === action.item.href
-                && action.item.hasChildren) {
-                return {
-                    ...state,
-                    folded: !state.folded
-                };
-            }
+        // 初始化导航项状态
+        case INIT_SIDEBAR_NAV_ITEM_STATUS: {
+
+            const navItemsStatus = Object.assign({}, state.navItemsStatus);
+            navItemsStatus[action.status.id] = {active: action.status.active, expand: false};
 
             return {
-                selectedItem: action.item,
-                folded: false
+                ...state,
+                navItemsStatus: navItemsStatus
             };
+        }
+
+        // 选中一个导航项
+        case TOGGLE_SIDEBAR_NAV_ITEM: {
+            return state;
         }
 
         default:
@@ -38,13 +38,20 @@ export default function reducer(state = initialState, action = {}) {
 
 export function toggleSidebar() {
     return {
-        type: [TOGGLE_SIDEBAR]
+        type: TOGGLE_SIDEBAR
     };
 }
 
-export function selectMenuItem(title, href, hasChildren) {
+export function initSidebarNavItemStatus(id, active) {
     return {
-        type: [SELECT_SIDEBAR_MENU_ITEM],
-        item: {title: title, href: href, hasChildren: hasChildren}
+        type: INIT_SIDEBAR_NAV_ITEM_STATUS,
+        status: {id: id, active: active}
+    };
+}
+
+export function toggleSidebarNavItem(id) {
+    return {
+        type: TOGGLE_SIDEBAR_NAV_ITEM,
+        item: {id: id}
     };
 }

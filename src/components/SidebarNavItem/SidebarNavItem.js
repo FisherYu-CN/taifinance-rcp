@@ -6,7 +6,7 @@ import * as sidebarActions from 'redux/modules/sidebar';
 
 @connect(
     state => ({
-        sidebar: state.sidebar
+        navItemsStatus: state.sidebar.navItemsStatus
     }),
     dispatch => bindActionCreators(
         Object.assign({}, sidebarActions, {pushState: routeActions.push}),
@@ -17,19 +17,32 @@ export default class SidebarNavItem extends Component {
 
     // 组件接受的属性
     static propTypes = {
+        id: PropTypes.string.isRequired,            // id
         title: PropTypes.string.isRequired,         // 标题
-        href: PropTypes.string,                      // 指向页面的url
+        href: PropTypes.string,                     // 指向页面的url
         iconClass: PropTypes.string,                // 图标class名称
         level: PropTypes.number,                    // 所属菜单层级
         onlyActiveOnIndex: PropTypes.string,        // 是否只在默认路由情况下激活
-        children: PropTypes.element,                 // 嵌套的子级菜单
-        pushState: PropTypes.func                    // 路由跳转函数
+        children: PropTypes.element,                // 嵌套的子级菜单
+        navItemsStatus: PropTypes.object,           // 导航项状态
+        initSidebarNavItemStatus: PropTypes.func,   // 初始化导航项状态函数
+        pushState: PropTypes.func                   // 路由跳转函数
     };
 
     // 组件的上下文环境
     static contextTypes = {
         router: React.PropTypes.object
     };
+
+    componentWillMount() {
+        let isActive;
+        if (this.props.href) {
+            isActive = this.context.router.isActive(this.props.href, this.props.onlyActiveOnIndex);
+        } else {
+            isActive = false;
+        }
+        this.props.initSidebarNavItemStatus(this.props.id, isActive);
+    }
 
     onClick(event) {
         event.preventDefault();
@@ -38,20 +51,13 @@ export default class SidebarNavItem extends Component {
         } else {
             console.log('ex');
         }
-
     }
 
     // 组件渲染逻辑
     render() {
 
-        const {router} = this.context;
-        const {title, href, iconClass, level, onlyActiveOnIndex, children} = this.props;
-
-        // 判断对应的路由是否被激活
-        let active;
-        if (router && href) {
-            active = router.isActive(href, onlyActiveOnIndex);
-        }
+        const {id, title, href, iconClass, level, navItemsStatus, children} = this.props;
+        const active = navItemsStatus[id] ? navItemsStatus[id].active : false;
 
         return (
             <li className={active ? 'active' : ''}>
