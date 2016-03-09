@@ -26,6 +26,7 @@ export default class SidebarNavItem extends Component {
         children: PropTypes.element,                // 嵌套的子级菜单
         navItemsStatus: PropTypes.object,           // 导航项状态
         initSidebarNavItemStatus: PropTypes.func,   // 初始化导航项状态函数
+        toggleSidebarNavItemGroup: PropTypes.func,
         pushState: PropTypes.func                   // 路由跳转函数
     };
 
@@ -34,7 +35,7 @@ export default class SidebarNavItem extends Component {
         router: React.PropTypes.object
     };
 
-    componentWillMount() {
+    componentDidMount() {
         let isActive;
         if (this.props.href) {
             isActive = this.context.router.isActive(this.props.href, this.props.onlyActiveOnIndex);
@@ -49,7 +50,7 @@ export default class SidebarNavItem extends Component {
         if (this.props.href && !this.props.children) {
             this.props.pushState(this.props.href);
         } else {
-            console.log('ex');
+            this.props.toggleSidebarNavItemGroup(this.props.id);
         }
     }
 
@@ -58,6 +59,7 @@ export default class SidebarNavItem extends Component {
 
         const {id, title, href, iconClass, level, navItemsStatus, children} = this.props;
         const active = navItemsStatus[id] ? navItemsStatus[id].active : false;
+        const expand = navItemsStatus[id] ? navItemsStatus[id].expand : false;
 
         return (
             <li className={active ? 'active' : ''}>
@@ -68,11 +70,11 @@ export default class SidebarNavItem extends Component {
                     { /* 菜单项标题 */ }
                     {level === 1 ? <span className="nav-label">{title}</span> : title}
 
-                    { /* 第二层菜单且存在子级菜单时，需要添加箭头图标 */ }
-                    {level === 2 && children && <span className="fa arrow"></span>}
+                    { /* 第一二层菜单且存在子级菜单时，需要添加箭头图标 */ }
+                    {level < 3 && children && <span className="fa arrow"></span>}
                 </a>
                 { /* 嵌套的子级菜单 */ }
-                {children && React.cloneElement(children, {level: level + 1})}
+                {children && React.cloneElement(children, {level: level + 1, expand: expand})}
             </li>
         );
     }

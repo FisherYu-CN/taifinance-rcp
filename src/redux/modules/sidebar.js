@@ -1,6 +1,6 @@
 const TOGGLE_SIDEBAR = 'taifinance-rcp/sidebar/TOGGLE';
 const INIT_SIDEBAR_NAV_ITEM_STATUS = 'taifinance-rcp/sidebar/INIT_NAV_ITEM_STATUS';
-const TOGGLE_SIDEBAR_NAV_ITEM = 'taifinance-rcp/sidebar/TOGGLE_NAV_ITEM';
+const TOGGLE_SIDEBAR_NAV_ITEM_GROUP = 'taifinance-rcp/sidebar/TOGGLE_NAV_ITEM_GROUP';
 
 const initialState = {
     minimized: false,
@@ -27,8 +27,18 @@ export default function reducer(state = initialState, action = {}) {
         }
 
         // 选中一个导航项
-        case TOGGLE_SIDEBAR_NAV_ITEM: {
-            return state;
+        case TOGGLE_SIDEBAR_NAV_ITEM_GROUP: {
+
+            const navItemsStatus = Object.assign({}, state.navItemsStatus);
+            navItemsStatus[action.item.id] = {
+                active: !navItemsStatus[action.item.id].active,
+                expand: !navItemsStatus[action.item.id].expand
+            };
+
+            return {
+                ...state,
+                navItemsStatus: navItemsStatus
+            };
         }
 
         default:
@@ -49,9 +59,9 @@ export function initSidebarNavItemStatus(id, active) {
     };
 }
 
-export function toggleSidebarNavItem(id) {
+export function toggleSidebarNavItemGroup(id) {
     return {
-        type: TOGGLE_SIDEBAR_NAV_ITEM,
+        type: TOGGLE_SIDEBAR_NAV_ITEM_GROUP,
         item: {id: id}
     };
 }

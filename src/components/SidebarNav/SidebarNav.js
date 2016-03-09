@@ -4,7 +4,8 @@ export default class SidebarNav extends Component {
 
     // 组件接受的属性
     static propTypes = {
-        level: PropTypes.number,                             // 所属菜单层级
+        level: PropTypes.number,                              // 所属菜单层级
+        expand: PropTypes.bool,                               // 是否需要展开
         children: React.PropTypes.oneOfType([                // 嵌套的具体菜单项
             React.PropTypes.element,
             PropTypes.arrayOf(PropTypes.element)
@@ -14,7 +15,7 @@ export default class SidebarNav extends Component {
     // 组件渲染逻辑
     render() {
 
-        const {level, children} = this.props;
+        const {level, expand, children} = this.props;
 
         // 未指定level属性的表示为第一级菜单
         const currentLevel = !level ? 1 : level;
@@ -29,6 +30,11 @@ export default class SidebarNav extends Component {
                 break;
             default:
                 navClass = 'nav-third-level collpase';
+        }
+
+        // 如不指定expand属性，则默认是展开
+        if (!expand && expand !== undefined) {
+            navClass += ' hide';
         }
 
         return (
