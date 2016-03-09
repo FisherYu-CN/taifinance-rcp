@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {SidebarNav, SidebarNavItem} from 'components';
+import {SidebarNav, SidebarNavHeader, SidebarNavItem} from 'components';
 
 export default class Sidebar extends Component {
 
@@ -8,6 +8,7 @@ export default class Sidebar extends Component {
             <nav className="navbar-default navbar-static-side">
                 <div className="sidebar-collapse">
                     <SidebarNav>
+                        <SidebarNavHeader />
                         <SidebarNavItem id="home" href="/portal/home" title="Home" iconClass="fa-home" />
                         <SidebarNavItem id="test" title="Test" iconClass="fa-diamond">
                             <SidebarNav>
