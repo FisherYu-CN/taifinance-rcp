@@ -1,4 +1,5 @@
-export Header from './Header/Header';
+export TopNavbar from './TopNavbar/TopNavbar';
+export SidebarToggleButton from './SidebarToggleButton/SidebarToggleButton';
 export Sidebar from './Sidebar/Sidebar';
 export SidebarNav from './SidebarNav/SidebarNav';
 export SidebarNavHeader from './SidebarNavHeader/SidebarNavHeader';

@@ -3,7 +3,7 @@ const INIT_SIDEBAR_NAV_ITEM_STATUS = 'taifinance-rcp/sidebar/INIT_NAV_ITEM_STATU
 const TOGGLE_SIDEBAR_NAV_ITEM_GROUP = 'taifinance-rcp/sidebar/TOGGLE_NAV_ITEM_GROUP';
 
 const initialState = {
-    minimized: false,
+    minimized: true,
     navItemsStatus: {}
 };
 

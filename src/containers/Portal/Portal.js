@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { Header, Sidebar, Footer } from 'components';
+import React, {Component, PropTypes} from 'react';
+import {TopNavbar, Sidebar, Footer} from 'components';
 
 export default class Portal extends Component {
 
@@ -12,7 +12,7 @@ export default class Portal extends Component {
             <div id="wrapper">
                 <Sidebar />
                 <div id="page-wrapper" className="gray-bg">
-                    <Header />
+                    <TopNavbar />
                     <div>{this.props.children}</div>
                     <Footer />
                 </div>
