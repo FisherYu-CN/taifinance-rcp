@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
+import Helmet from 'react-helmet';
+import config from '../../config';
 
 export default class App extends Component {
 
@@ -7,8 +9,12 @@ export default class App extends Component {
     };
 
     render() {
+
         return (
-            <div>{this.props.children}</div>
+            <div>
+                <Helmet {...config.app.head}/>
+                <div>{this.props.children}</div>
+            </div>
         );
     }
 }

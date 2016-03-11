@@ -15,7 +15,6 @@ import * as sidebarActions from 'redux/modules/sidebar';
 )
 export default class SidebarNavItem extends Component {
 
-    // 组件接受的属性
     static propTypes = {
         id: PropTypes.string.isRequired,            // id
         title: PropTypes.string.isRequired,         // 标题
@@ -30,7 +29,6 @@ export default class SidebarNavItem extends Component {
         pushState: PropTypes.func                   // 路由跳转函数
     };
 
-    // 组件的上下文环境
     static contextTypes = {
         router: React.PropTypes.object
     };

@@ -13,7 +13,6 @@ import * as sidebarActions from 'redux/modules/sidebar';
 )
 export default class SidebarToggleButton extends Component {
 
-    // 组件接受的属性
     static propTypes = {
         minimized: PropTypes.bool,          // 侧边栏是否最小化
         toggleSidebar: PropTypes.func       // 切换侧边栏展开/收起状态函数

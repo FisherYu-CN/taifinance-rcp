@@ -3,7 +3,6 @@ import Dropdown from 'react-bootstrap/lib/Dropdown';
 
 export default class SidebarNavHeader extends Component {
 
-    // 组件接受的属性
     static propTypes = {
         name: PropTypes.string.isRequired,              // 用户名称
         company: PropTypes.string.isRequired,           // 用户公司

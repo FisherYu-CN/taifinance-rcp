@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 
 export default class SidebarNav extends Component {
 
-    // 组件接受的属性
     static propTypes = {
         level: PropTypes.number,                              // 所属菜单层级
         expand: PropTypes.bool,                               // 是否需要展开
