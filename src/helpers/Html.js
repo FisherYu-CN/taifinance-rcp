@@ -8,27 +8,22 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
-import {connect} from 'react-redux';
+import BodyClassName from 'react-body-classname';
 
-@connect(
-    state => ({
-        minimized: state.sidebar.minimized
-    })
-)
 export default class Html extends Component {
 
     // 定义可接受的property的类型
     static propTypes = {
         assets: PropTypes.object,
         component: PropTypes.node,
-        store: PropTypes.object,
-        minimized: PropTypes.bool
+        store: PropTypes.object
     };
 
     render() {
         const {assets, component, store, minimized} = this.props;
         const content = component ? ReactDOM.renderToString(component) : '';
         const head = Helmet.rewind();
+        const bodyClassName = BodyClassName.rewind();
 
         return (
             <html lang="en-us">
@@ -52,7 +47,7 @@ export default class Html extends Component {
                 {/* 使用内联样式可以使开发模式下页面加载时更加流畅，理想情况下，这里也可以包含当前页面的样式 */}
                 {Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js')}}/> : null}
             </head>
-            <body className={minimized ? 'mini-navbar' : ''}>
+            <body className={bodyClassName}>
                 <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
                 <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
                 <script src={assets.javascript.main} charSet="UTF-8"/>
