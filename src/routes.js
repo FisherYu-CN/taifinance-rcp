@@ -3,9 +3,9 @@
  */
 
 import React from 'react';
-import { IndexRoute, Route } from 'react-router';
-import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
-import { App, Landing, Signin, Signup, Portal, Home, NotFound } from 'containers';
+import {IndexRoute, Route} from 'react-router';
+import {isLoaded as isAuthLoaded, load as loadAuth} from 'redux/modules/auth';
+import {App, Landing, Signin, Signup, Portal, Home, DataModel, NotFound} from 'containers';
 
 export default (store) => {
 
@@ -26,7 +26,7 @@ export default (store) => {
             const { auth: { user }} = store.getState();
             if (!user) {
                 // 没有登录，跳转到主页
-                replace('/login');
+                replace('/signin');
             }*/
             cb();
         };
@@ -46,7 +46,17 @@ export default (store) => {
             { /* 需要登录的路由 */ }
             <Route onEnter={requireLogin}>
                 <Route path="portal" component={Portal}>
+
+                    { /* 首页 */ }
                     <Route path="home" component={Home} />
+
+                    { /* 模型管理 */ }
+                    <Route path="datamodels" component={DataModel} />
+                    <Route path="datamodels/new" component={DataModel} />
+                    <Route path="datamodels/:id" component={DataModel} />
+                    <Route path="datamodels/:id/edit" component={DataModel} />
+
+
                 </Route>
             </Route>
 

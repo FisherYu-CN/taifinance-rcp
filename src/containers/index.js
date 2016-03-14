@@ -5,5 +5,6 @@ export Signin from './Signin/Signin';
 export Signup from './Signup/Signup';
 export Portal from './Portal/Portal';
 export Home from './Home/Home';
+export DataModel from './DataModel/DataModel';
 export NotFound from './NotFound/NotFound';
 
