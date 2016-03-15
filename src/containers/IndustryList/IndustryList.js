@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 
-export default class DataModel extends Component {
+export default class IndustryList extends Component {
 
     render() {
         return (
             <div>
-                <Helmet title="Data Model"/>
-                <span>Data Model</span>
+                <Helmet title="IndustryList"/>
+                <span>Industry List</span>
             </div>
         );
     }
