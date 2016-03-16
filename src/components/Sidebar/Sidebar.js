@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {FormattedMessage} from 'react-intl';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import {SidebarNav, SidebarNavHeader, SidebarNavItem} from 'components';
 
@@ -17,8 +18,12 @@ export default class Sidebar extends Component {
                     <SidebarNav>
                         { /* 侧边导航栏标题栏 */ }
                         <SidebarNavHeader name={name} company={company} profileImageUrl={profileImageUrl}>
-                            <MenuItem href="/portal/users/profile">Edit Profile</MenuItem>
-                            <MenuItem href="/portal/users/password">Change Password</MenuItem>
+                            <MenuItem href="/portal/users/profile">
+                                <FormattedMessage id="sidebar.header.menus.profile" />
+                            </MenuItem>
+                            <MenuItem href="/portal/users/password">
+                                <FormattedMessage id="sidebar.header.menus.password" />
+                            </MenuItem>
                             <MenuItem divider />
                             <MenuItem href="/api/auth/signout">Sign Out</MenuItem>
                         </SidebarNavHeader>

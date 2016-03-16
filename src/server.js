@@ -6,9 +6,10 @@ import Express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import createHistory from 'react-router/lib/createMemoryHistory';
-import { match } from 'react-router';
-import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
-import { Provider } from 'react-redux';
+import {match} from 'react-router';
+import {ReduxAsyncConnect, loadOnServer} from 'redux-async-connect';
+import {Provider} from 'react-redux';
+import {IntlProvider} from 'react-intl';
 import favicon from 'serve-favicon';
 import compression from 'compression';
 import httpProxy from 'http-proxy';
@@ -16,10 +17,24 @@ import PrettyError from 'pretty-error';
 import path from 'path';
 import http from 'http';
 import config from './config';
+import {sync as globSync} from 'glob';
+import {readFileSync} from 'fs';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import Html from './helpers/Html';
 import getRoutes from './routes';
+
+// 获取国际化文件数据
+const translations = globSync('./src/i18n/*.json')
+    .map((filename) => [
+        path.basename(filename, '.json'),
+        readFileSync(filename, 'utf8'),
+    ])
+    .map(([locale, file]) => [locale, JSON.parse(file)])
+    .reduce((collection, [locale, messages]) => {
+        collection[locale] = messages;
+        return collection;
+    }, {});
 
 // 创建代理到API server的代理服务，并支持websocket请求
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
@@ -62,16 +77,25 @@ proxy.on('error', (error, req, res) => {
         console.error('proxy error', error);
     }
     if (!res.headersSent) {
-        res.writeHead(500, { 'content-type': 'application/json' });
+        res.writeHead(500, {'content-type': 'application/json'});
     }
 
-    json = { error: 'proxy_error', reason: error.message };
+    json = {error: 'proxy_error', reason: error.message};
     res.end(JSON.stringify(json));
 });
 
 const pretty = new PrettyError();
 
 app.use((req, res) => {
+
+    // 根据请求的locale来获取相应的国际化配置
+    const locale = req.query.locale || 'zh';
+    const messages = translations[locale];
+
+    if (!messages) {
+        return res.status(404).send('Locale is not supported.');
+    }
+    const i18n = {locale, messages};
 
     // 清除webpack缓存数据，因为开发环境中启用了热重载，脚本文件会被替换
     if (__DEVELOPMENT__) {
@@ -88,7 +112,7 @@ app.use((req, res) => {
      */
     function hydrateOnClient() {
         res.send('<!doctype html>\n' +
-            ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store}/>));
+            ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store} i18n={i18n}/>));
     }
 
     // 如果禁用了服务端渲染，则转向客户端渲染
@@ -116,7 +140,9 @@ app.use((req, res) => {
                 // 初始化组件
                 const component = (
                     <Provider store={store} key="provider">
-                        <ReduxAsyncConnect {...renderProps} />
+                        <IntlProvider locale={i18n.locale} messages={i18n.messages}>
+                            <ReduxAsyncConnect {...renderProps} />
+                        </IntlProvider>
                     </Provider>
                 );
 
@@ -128,7 +154,7 @@ app.use((req, res) => {
 
                 // 渲染页面并返回结果
                 res.send('<!doctype html>\n' +
-                    ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component} store={store}/>));
+                    ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component} store={store} i18n={i18n}/>));
             });
         }
         // 给定的location没有匹配到对应的路由，返回404错误
