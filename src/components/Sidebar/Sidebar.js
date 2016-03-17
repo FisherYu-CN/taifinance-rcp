@@ -25,23 +25,35 @@ export default class Sidebar extends Component {
                                 <FormattedMessage id="sidebar.header.menus.password" />
                             </MenuItem>
                             <MenuItem divider />
-                            <MenuItem href="/api/auth/signout">Sign Out</MenuItem>
+                            <MenuItem href="/api/auth/signout">
+                                <FormattedMessage id="sidebar.header.menus.signout" />
+                            </MenuItem>
                         </SidebarNavHeader>
 
                         { /* 侧边导航栏导航项 */ }
-                        <SidebarNavItem id="home" href="/portal/home" title="Home" iconClass="fa-home" />
-                        <SidebarNavItem id="test" title="Test" iconClass="fa-diamond">
+                        <SidebarNavItem id="home" titleId="sidebar.nav.home" href="/portal/home" iconClass="fa-home" />
+
+                        <SidebarNavItem id="datamodels" titleId="sidebar.nav.datamodel" iconClass="fa-cubes">
                             <SidebarNav>
-                                <SidebarNavItem id="test1" title="Test1">
+                                <SidebarNavItem id="datamodels.industry" titleId="sidebar.nav.datamodel.industry">
                                     <SidebarNav>
-                                        <SidebarNavItem id="test11" href="/portal/test/test1/test11" title="Test11" />
-                                        <SidebarNavItem id="test12" href="/portal/test/test1/test12" title="Test12" />
+                                        <SidebarNavItem id="test11" title="Test11" href="/portal/test/test1/test11" />
+                                        <SidebarNavItem id="test12" title="Test12" href="/portal/test/test1/test12" />
                                     </SidebarNav>
                                 </SidebarNavItem>
-                                <SidebarNavItem id="test2" href="/portal/test/test2" title="Test2" />
+                                <SidebarNavItem id="datamodels.model" titleId="sidebar.nav.datamodel.model" href="/portal/datamodels" />
                             </SidebarNav>
                         </SidebarNavItem>
-                        <SidebarNavItem id="user" href="/portal/user" title="User" iconClass="fa-user" />
+
+                        <SidebarNavItem id="unionpay" titleId="sidebar.nav.unionpay" iconClass="fa-credit-card">
+                            <SidebarNav>
+                                <SidebarNavItem id="unionpay.idcard.validity" titleId="sidebar.nav.unionpay.idcard.validity" href="/portal/unionpay/idcard/validity" />
+                                <SidebarNavItem id="unionpay.bankcard.validity" titleId="sidebar.nav.unionpay.bankcard.validity" href="/portal/unionpay/bankcard/validity" />
+                                <SidebarNavItem id="unionpay.bankcard.usage" titleId="sidebar.nav.unionpay.bankcard.usage" href="/portal/unionpay/bankcard/usage" />
+                                <SidebarNavItem id="unionpay.portrait.individual" titleId="sidebar.nav.unionpay.portrait.individual" href="/portal/unionpay/portrait/individual" />
+                                <SidebarNavItem id="unionpay.portrait.enterprise" titleId="sidebar.nav.unionpay.portrait.enterprise" href="/portal/unionpay/portrait/enterprise" />
+                            </SidebarNav>
+                        </SidebarNavItem>
                     </SidebarNav>
                 </div>
             </nav>

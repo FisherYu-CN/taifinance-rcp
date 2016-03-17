@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {FormattedMessage} from 'react-intl';
 import {routeActions} from 'react-router-redux';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -17,7 +18,8 @@ export default class SidebarNavItem extends Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,            // id
-        title: PropTypes.string.isRequired,         // 标题
+        title: PropTypes.string,                    // 标题
+        titleId: PropTypes.string,                  // 标题在国际化文件中的id
         href: PropTypes.string,                     // 指向页面的url
         iconClass: PropTypes.string,                // 图标class名称
         level: PropTypes.number,                    // 所属菜单层级
@@ -55,9 +57,17 @@ export default class SidebarNavItem extends Component {
     // 组件渲染逻辑
     render() {
 
-        const {id, title, href, iconClass, level, navItemsStatus, children} = this.props;
+        const {id, title, titleId, href, iconClass, level, navItemsStatus, children} = this.props;
         const active = navItemsStatus[id] ? navItemsStatus[id].active : false;
         const expand = navItemsStatus[id] ? navItemsStatus[id].expand : false;
+
+        // 初始化标题
+        let titleComponent;
+        if (title) {
+            titleComponent = title;
+        } else if (titleId) {
+            titleComponent = <FormattedMessage id={titleId} />;
+        }
 
         return (
             <li className={active ? 'active' : ''}>
@@ -66,7 +76,7 @@ export default class SidebarNavItem extends Component {
                     {iconClass && level === 1 && <i className={'fa ' + iconClass}></i>}
 
                     { /* 菜单项标题 */ }
-                    {level === 1 ? <span className="nav-label">{title}</span> : title}
+                    {level === 1 ? <span className="nav-label">{titleComponent}</span> : titleComponent}
 
                     { /* 第一二层菜单且存在子级菜单时，需要添加箭头图标 */ }
                     {level < 3 && children && <span className="fa arrow"></span>}

@@ -23,18 +23,21 @@ import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import Html from './helpers/Html';
 import getRoutes from './routes';
+import enMessages from './i18n/en';
+import zhMessages from './i18n/zh';
 
 // 获取国际化文件数据
-const translations = globSync('./src/i18n/*.json')
-    .map((filename) => [
-        path.basename(filename, '.json'),
-        readFileSync(filename, 'utf8'),
-    ])
-    .map(([locale, file]) => [locale, JSON.parse(file)])
-    .reduce((collection, [locale, messages]) => {
-        collection[locale] = messages;
-        return collection;
-    }, {});
+//const translations = globSync('./src/i18n/*.js')
+//    .map((filename) => [
+//        path.basename(filename, '.json'),
+//        readFileSync(filename, 'utf8'),
+//    ])
+//    .map(([locale, file]) => [locale, JSON.parse(file)])
+//    .reduce((collection, [locale, messages]) => {
+//        collection[locale] = messages;
+//        return collection;
+//    }, {});
+
 
 // 创建代理到API server的代理服务，并支持websocket请求
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
@@ -89,12 +92,9 @@ const pretty = new PrettyError();
 app.use((req, res) => {
 
     // 根据请求的locale来获取相应的国际化配置
-    const locale = req.query.locale || 'zh';
+    const translations = {en: enMessages, zh: zhMessages};
+    const locale = 'zh';
     const messages = translations[locale];
-
-    if (!messages) {
-        return res.status(404).send('Locale is not supported.');
-    }
     const i18n = {locale, messages};
 
     // 清除webpack缓存数据，因为开发环境中启用了热重载，脚本文件会被替换

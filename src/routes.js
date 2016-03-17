@@ -74,8 +74,8 @@ export default (store) => {
                     <Route path="unionpay/idcard/validity" component={IdCardValidity} />
                     <Route path="unionpay/bankcard/validity" component={BankCardValidity} />
                     <Route path="unionpay/bankcard/usage" component={BankCardUsage} />
-                    <Route path="unionpay/individual/portrait" component={IndividualPortrait} />
-                    <Route path="unionpay/enterprise/portrait" component={EnterprisePortrait} />
+                    <Route path="unionpay/portrait/individual" component={IndividualPortrait} />
+                    <Route path="unionpay/portrait/enterprise" component={EnterprisePortrait} />
 
                     { /* 电信运营商数据 */ }
                     <Route path="telecom/phonenumber/validity" component={PhoneNumberValidity} />
