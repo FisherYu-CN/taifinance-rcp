@@ -14,7 +14,7 @@ var compiler = webpack(webpackConfig);
 
 // 从配置文件获取主机名与端口号
 var host = config.host || 'localhost';
-var port = (config.port + 1) || 3001;
+var port = (Number(config.port) + 1) || 3001;
 
 // webpack开发中间件配置
 var serverOptions = {

@@ -64,7 +64,7 @@ reactTransform[1].transforms.push({
 
 // 获取主机名及端口号
 var host = (process.env.HOST || 'localhost');
-var port = parseInt(process.env.PORT) + 1 || 3001;
+var port = (+process.env.PORT + 1) || 3001;
 
 // 开发环境Webpack配置
 module.exports = {
