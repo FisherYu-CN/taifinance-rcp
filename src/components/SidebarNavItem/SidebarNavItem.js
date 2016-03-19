@@ -57,6 +57,8 @@ export default class SidebarNavItem extends Component {
     // 组件渲染逻辑
     render() {
 
+        const styles = require('./SidebarNavItem.scss');
+
         const {id, title, titleId, href, iconClass, level, navItemsStatus, children} = this.props;
         const active = navItemsStatus[id] ? navItemsStatus[id].active : false;
         const expand = navItemsStatus[id] ? navItemsStatus[id].expand : false;
@@ -70,7 +72,7 @@ export default class SidebarNavItem extends Component {
         }
 
         return (
-            <li className={active ? 'active' : ''}>
+            <li className={styles.sidebarNavItem + (active ? ' active' : '')}>
                 <a href={href} onClick={(event) => this.onClick(event)}>
                     { /* 菜单项图标, 第一层菜单需要渲染图标 */ }
                     {iconClass && level === 1 && <i className={'fa ' + iconClass}></i>}

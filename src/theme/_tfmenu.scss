@@ -11,6 +11,12 @@
   content: "\e079"
 }
 
+.tfmenu li i {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+}
+
 .tfmenu .active > a > .glyphicon.arrow:before {
   content: "\e114"
 }
