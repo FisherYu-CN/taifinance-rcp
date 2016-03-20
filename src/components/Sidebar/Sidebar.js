@@ -36,12 +36,7 @@ export default class Sidebar extends Component {
                         { /* 侧边导航栏导航项 - 模型管理 */ }
                         <SidebarNavItem id="datamodels" titleId="sidebar.nav.datamodel" iconClass="fa-cubes">
                             <SidebarNav>
-                                <SidebarNavItem id="datamodels.industry" titleId="sidebar.nav.datamodel.industry">
-                                    <SidebarNav>
-                                        <SidebarNavItem id="test11" title="Test11" href="/portal/test/test1/test11" />
-                                        <SidebarNavItem id="test12" title="Test12" href="/portal/test/test1/test12" />
-                                    </SidebarNav>
-                                </SidebarNavItem>
+                                <SidebarNavItem id="datamodels.industry" titleId="sidebar.nav.datamodel.industry" href="/portal/industries" />
                                 <SidebarNavItem id="datamodels.model" titleId="sidebar.nav.datamodel.model" href="/portal/datamodels" />
                             </SidebarNav>
                         </SidebarNavItem>

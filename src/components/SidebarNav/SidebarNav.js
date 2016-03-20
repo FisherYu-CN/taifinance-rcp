@@ -5,7 +5,7 @@ export default class SidebarNav extends Component {
     static propTypes = {
         level: PropTypes.number,                              // 所属菜单层级
         expand: PropTypes.bool,                               // 是否需要展开
-        children: React.PropTypes.oneOfType([                // 嵌套的具体菜单项
+        children: React.PropTypes.oneOfType([                 // 嵌套的具体菜单项
             React.PropTypes.element,
             PropTypes.arrayOf(PropTypes.element)
         ])
@@ -25,10 +25,10 @@ export default class SidebarNav extends Component {
                 navClass = 'tfmenu';
                 break;
             case 2:
-                navClass = 'nav-second-level collpase';
+                navClass = 'nav-second-level';
                 break;
             default:
-                navClass = 'nav-third-level collpase';
+                navClass = 'nav-third-level';
         }
 
         // 如不指定expand属性，则默认是展开

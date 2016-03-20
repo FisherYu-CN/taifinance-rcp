@@ -40,17 +40,20 @@ export default function reducer(state = initialState, action = {}) {
 
             // 确保所有被激活的菜单的父菜单都被激活且展开
             for (let id in navItems) {
-                if (navItemsStatus[id].active && navItems[id].parentId) {
-                    let parentNavItem = navItems[navItems[id].parentId];
-                    let parentNavItemStatus = navItemsStatus[navItems[id].parentId];
-                    while (parentNavItem && parentNavItemStatus) {
-                        parentNavItemStatus.active = true;
-                        parentNavItemStatus.expand = true;
-                        if (parentNavItem.parentId) {
-                            parentNavItem = navItems[parentNavItem.parentId];
-                            parentNavItemStatus = navItemsStatus[parentNavItem.parentId];
-                        } else {
-                            break;
+                if (navItems.hasOwnProperty(id)) {
+                    if (navItemsStatus[id].active && navItems[id].parentId) {
+                        let parentNavItem = navItems[navItems[id].parentId];
+                        let parentNavItemStatus = navItemsStatus[navItems[id].parentId];
+                        while (parentNavItem && parentNavItemStatus) {
+                            parentNavItemStatus.active = true;
+                            parentNavItemStatus.expand = true;
+                            if (parentNavItem.parentId) {
+                                // 此处要最后给parentNavItem赋值以保证之前的引用正确
+                                parentNavItemStatus = navItemsStatus[parentNavItem.parentId];
+                                parentNavItem = navItems[parentNavItem.parentId];
+                            } else {
+                                break;
+                            }
                         }
                     }
                 }
@@ -86,8 +89,38 @@ export default function reducer(state = initialState, action = {}) {
 
             const navItemsStatus = Object.assign({}, state.navItemsStatus);
 
-            navItemsStatus[action.id].active = !navItemsStatus[action.id].active;
-            navItemsStatus[action.id].expand = !navItemsStatus[action.id].expand;
+            if (navItemsStatus[action.id].active) {
+                navItemsStatus[action.id].expand = !navItemsStatus[action.id].expand;
+            } else {
+                // 先重置其他导航项的激活状态
+                for (let id in navItemsStatus) {
+                    if (navItemsStatus.hasOwnProperty(id)) {
+                        navItemsStatus[id].active = false;
+                        navItemsStatus[id].expand = false;
+                    }
+                }
+
+                // 激活当前导航项以及其父导航项状态
+                navItemsStatus[action.id].active = true;
+                navItemsStatus[action.id].expand = true;
+
+                let parentId = state.navItems[action.id].parentId;
+                if (parentId) {
+                    let parentNavItem = state.navItems[parentId];
+                    let parentNavItemStatus = navItemsStatus[parentId];
+                    while (parentNavItem && parentNavItemStatus) {
+                        parentNavItemStatus.active = true;
+                        parentNavItemStatus.expand = true;
+                        if (parentNavItem.parentId) {
+                            // 此处要最后给parentNavItem赋值以保证之前的引用正确
+                            parentNavItemStatus = navItemsStatus[parentNavItem.parentId];
+                            parentNavItem = state.navItems[parentNavItem.parentId];
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
 
             return {
                 ...state,
