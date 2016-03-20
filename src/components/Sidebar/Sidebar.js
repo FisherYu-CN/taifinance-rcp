@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {FormattedMessage} from 'react-intl';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import {SidebarNav, SidebarNavHeader, SidebarNavItem} from 'components';

@@ -14,7 +14,7 @@ export default class SidebarNav extends Component {
     // 组件渲染逻辑
     render() {
 
-        const {level, expand, children} = this.props;
+        const {level, expand, children, ...props} = this.props;
 
         // 未指定level属性的表示为第一级菜单
         const currentLevel = !level ? 1 : level;
@@ -39,7 +39,7 @@ export default class SidebarNav extends Component {
         return (
             <ul className={'nav ' + navClass}>
                 {React.Children.map(children, element => {
-                    return React.cloneElement(element, {level: currentLevel});
+                    return React.cloneElement(element, {...props});
                 })}
             </ul>
         );
