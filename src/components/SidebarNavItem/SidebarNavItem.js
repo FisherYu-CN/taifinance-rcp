@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import Collapse from 'react-bootstrap/lib/Collapse';
 import {FormattedMessage} from 'react-intl';
 import {routeActions} from 'react-router-redux';
 import {connect} from 'react-redux';
@@ -114,7 +115,11 @@ export default class SidebarNavItem extends Component {
                     {level < 3 && children && <span className="fa arrow"></span>}
                 </a>
                 { /* 嵌套的子级菜单 */ }
-                {children && React.cloneElement(children, {parentId: id, level: level + 1, expand: expand})}
+                <Collapse in={expand}>
+                    <div>
+                        {children && React.cloneElement(children, {parentId: id, level: level + 1, expand: expand})}
+                    </div>
+                </Collapse>
             </li>
         );
     }
