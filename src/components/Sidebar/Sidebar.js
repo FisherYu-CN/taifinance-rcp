@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {LinkContainer} from 'react-router-bootstrap';
 import {FormattedMessage} from 'react-intl';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import {SidebarNav, SidebarNavHeader, SidebarNavItem} from 'components';
@@ -18,16 +19,22 @@ export default class Sidebar extends Component {
                     <SidebarNav>
                         { /* 侧边导航栏标题栏 */ }
                         <SidebarNavHeader name={name} company={company} profileImageUrl={profileImageUrl}>
-                            <MenuItem href="/portal/users/profile">
-                                <FormattedMessage id="sidebar.header.menus.profile" />
-                            </MenuItem>
-                            <MenuItem href="/portal/users/password">
-                                <FormattedMessage id="sidebar.header.menus.password" />
-                            </MenuItem>
+                            <LinkContainer to="/portal/users/profile">
+                                <MenuItem>
+                                    <FormattedMessage id="sidebar.header.menus.profile" />
+                                </MenuItem>
+                            </LinkContainer>
+                            <LinkContainer to="/portal/users/password">
+                                <MenuItem>
+                                    <FormattedMessage id="sidebar.header.menus.password" />
+                                </MenuItem>
+                            </LinkContainer>
                             <MenuItem divider />
-                            <MenuItem href="/api/auth/signout">
-                                <FormattedMessage id="sidebar.header.menus.signout" />
-                            </MenuItem>
+                            <LinkContainer to="/api/auth/signout">
+                                <MenuItem>
+                                    <FormattedMessage id="sidebar.header.menus.signout" />
+                                </MenuItem>
+                            </LinkContainer>
                         </SidebarNavHeader>
 
                         { /* 侧边导航栏导航项 - 首页 */ }

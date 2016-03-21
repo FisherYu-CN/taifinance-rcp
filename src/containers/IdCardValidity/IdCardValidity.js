@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import {Breadcrumb} from 'components';
 
 export default class IdCardValidity extends Component {
 
@@ -7,6 +8,7 @@ export default class IdCardValidity extends Component {
         return (
             <div>
                 <Helmet title="Id Card Validity"/>
+                <Breadcrumb />
                 <span>Id Card Validity</span>
             </div>
         );
