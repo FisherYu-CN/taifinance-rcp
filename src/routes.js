@@ -7,11 +7,11 @@ import {IndexRoute, Route} from 'react-router';
 import {isLoaded as isAuthLoaded, load as loadAuth} from 'redux/modules/auth';
 import {
     App, Landing, Signin, Signup, Forgot, ForgotSuccess, PasswordReset, PasswordResetInvalid, PasswordResetSuccess, Portal, Home, Forbidden, NotFound,
-    DataModel, DataModelList, DataModelForm, DataModelInvoke, Industry, IndustryList, IndustryForm,
+    DataModels, DataModel, DataModelForm, DataModelInvoke, Industries, Industry, IndustryForm,
     IdCardValidity, BankCardValidity, BankCardUsage, IndividualPortrait, EnterprisePortrait,
     PhoneNumberValidity, PhoneNumberAmount, PhoneNumberCreditLevel, PhoneNumberExpense, PhoneNumberArrearage, PhoneNumberDowntime,
     IndustryCommerceIndividual, IndustryCommerceEnterprise, DishonestDebtor, CourtEnforcement,
-    UserList, User, UserProfile, UserPassword, RoleList, Role
+    Users, User, UserProfile, UserPassword, Roles, Role
 } from 'containers';
 
 export default (store) => {
@@ -58,17 +58,19 @@ export default (store) => {
                     <Route path="home" component={Home} />
 
                     { /* 模型管理 */ }
-                    <Route path="datamodels" component={DataModelList} />
-                    <Route path="datamodels/new" component={DataModelForm} />
-                    <Route path="datamodels/:id" component={DataModel} />
-                    <Route path="datamodels/:id/edit" component={DataModelForm} />
-                    <Route path="datamodels/:id/invoke" component={DataModelInvoke} />
+                    <Route path="datamodels" component={DataModels}>
+                        <Route path="new" component={DataModelForm} />
+                        <Route path=":id" component={DataModel} />
+                        <Route path=":id/edit" component={DataModelForm} />
+                        <Route path=":id/invoke" component={DataModelInvoke} />
+                    </Route>
 
                     { /* 行业管理 */ }
-                    <Route path="industries" component={IndustryList} />
-                    <Route path="industries/new" component={IndustryForm} />
-                    <Route path="industries/:id" component={Industry} />
-                    <Route path="industries/:id/edit" component={IndustryForm} />
+                    <Route path="industries" component={Industries}>
+                        <Route path="new" component={IndustryForm} />
+                        <Route path=":id" component={Industry} />
+                        <Route path=":id/edit" component={IndustryForm} />
+                    </Route>
 
                     { /* 银联数据 */ }
                     <Route path="unionpay/idcard/validity" component={IdCardValidity} />
@@ -93,16 +95,19 @@ export default (store) => {
                     <Route path="courtblacklist/dishonestdebtor" component={DishonestDebtor} />
                     <Route path="courtblacklist/enforcement" component={CourtEnforcement} />
 
-                    { /* 用户管理 */ }
-                    <Route path="users" component={UserList} />
+                    { /* 个人信息 */ }
                     <Route path="users/profile" component={UserProfile} />
                     <Route path="users/password" component={UserPassword} />
-                    <Route path="users/:id" component={User} />
+
+                    { /* 用户管理 */ }
+                    <Route path="users" component={Users}>
+                        <Route path=":id" component={User} />
+                    </Route>
 
                     { /* 角色管理 */ }
-                    <Route path="roles" component={RoleList} />
-                    <Route path="roles/:id" component={Role} />
-
+                    <Route path="roles" component={Roles}>
+                        <Route path=":id" component={Role} />
+                    </Route>
                 </Route>
             </Route>
 
