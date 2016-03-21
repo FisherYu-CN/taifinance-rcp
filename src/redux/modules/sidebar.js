@@ -26,6 +26,7 @@ export default function reducer(state = initialState, action = {}) {
             let navItems = Object.assign({}, state.navItems);
             navItems[action.navItem.id] = {
                 parentId: action.navItem.parentId,
+                hasChildren: action.navItem.hasChildren,
                 title: action.navItem.title,
                 titleId: action.navItem.titleId,
                 href: action.navItem.href
@@ -91,12 +92,19 @@ export default function reducer(state = initialState, action = {}) {
 
             if (navItemsStatus[action.id].active) {
                 navItemsStatus[action.id].expand = !navItemsStatus[action.id].expand;
+                navItemsStatus[action.id].active = !navItemsStatus[action.id].active;
             } else {
-                // 先重置其他导航项的激活状态
+
+                // 重置导航项的激活状态的条件：
+                // 1. 选中的导航项没有子孙时(路由变更)，重置所有其他导航项激活状态
+                // 2. 选中的导航项有子孙时，重置所有其他非叶兄弟导航项激活状态
                 for (let id in navItemsStatus) {
                     if (navItemsStatus.hasOwnProperty(id)) {
-                        navItemsStatus[id].active = false;
-                        navItemsStatus[id].expand = false;
+                        if (!state.navItems[action.id].hasChildren || (state.navItems[id].hasChildren &&
+                            state.navItems[id].parentId === state.navItems[action.id].parentId)) {
+                            navItemsStatus[id].active = false;
+                            navItemsStatus[id].expand = false;
+                        }
                     }
                 }
 
@@ -140,12 +148,13 @@ export function toggleSidebar() {
     };
 }
 
-export function registerSidebarNavItem(id, parentId, title, titleId, href, active) {
+export function registerSidebarNavItem(id, parentId, hasChildren, title, titleId, href, active) {
     return {
         type: REGISTER_SIDEBAR_NAV_ITEM,
         navItem: {
             id: id,
             parentId: parentId,
+            hasChildren: hasChildren,
             title: title,
             titleId: titleId,
             href: href,

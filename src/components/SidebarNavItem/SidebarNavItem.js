@@ -51,6 +51,7 @@ export default class SidebarNavItem extends Component {
         this.props.registerSidebarNavItem(
             this.props.id,
             this.props.parentId,
+            this.props.children ? true : false,
             this.props.title,
             this.props.titleId,
             this.props.href,
