@@ -1,10 +1,34 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
 import {FormattedMessage} from 'react-intl';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import {SidebarNav, SidebarNavHeader, SidebarNavItem} from 'components';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as sidebarActions from 'redux/modules/sidebar';
 
+@connect(
+    state => ({
+        pathname: state.routing.location.pathname
+    }),
+    dispatch => bindActionCreators(
+        Object.assign({}, sidebarActions),
+        dispatch
+    )
+)
 export default class Sidebar extends Component {
+
+    static propTypes = {
+        pathname: PropTypes.string,
+        selectSidebarNavItem: PropTypes.func
+    };
+
+    componentWillReceiveProps(nextProps) {
+        // 在路由切换时，模拟一个导航项选择事件(即使url对应的导航项不存在)，从而更新侧边栏状态
+        if (nextProps.pathname) {
+            this.props.selectSidebarNavItem(null, nextProps.pathname);
+        }
+    }
 
     render() {
 

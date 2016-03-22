@@ -66,9 +66,10 @@ export default class SidebarNavItem extends Component {
 
     selectSidebarNavItem(event) {
         event.preventDefault();
-        this.props.selectSidebarNavItem(this.props.id);
         if (this.props.href && !this.props.children) {
             this.props.pushState(this.props.href);
+        } else {
+            this.props.selectSidebarNavItem(this.props.id);
         }
     }
 
