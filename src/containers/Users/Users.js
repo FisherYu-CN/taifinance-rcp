@@ -7,18 +7,27 @@ export default class Users extends Component {
         children: PropTypes.element                // 嵌套的子级菜单
     };
 
+    /**
+     * 获取用户列表组件
+     *
+     * @return {Object} 用户列表组件
+     */
+    getUserListComponent = () => {
+        return (
+            <div>
+                <Helmet title="User List"/>
+                <span>User List</span>
+            </div>
+        );
+    }
+
     render() {
 
         const {children} = this.props;
 
         return (
             <div>
-                {children ? children :
-                    <div>
-                        <Helmet title="User List"/>
-                        <span>User List</span>
-                    </div>
-                }
+                {children ? children : this.getUserListComponent()}
             </div>
         );
     }

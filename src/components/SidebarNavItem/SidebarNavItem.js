@@ -64,12 +64,17 @@ export default class SidebarNavItem extends Component {
         this.props.unregisterSidebarNavItem(this.props.id);
     }
 
-    selectSidebarNavItem(event) {
+    /**
+     * 选取一个导航项事件处理函数
+     *
+     * @param event {Object} 选取导航项事件
+     */
+    selectSidebarNavItem = (event) => {
         event.preventDefault();
-        if (this.props.href && !this.props.children) {
-            this.props.pushState(this.props.href);
-        } else {
+        if (this.props.children) {
             this.props.selectSidebarNavItem(this.props.id);
+        } else {
+            this.props.pushState(this.props.href);
         }
     }
 

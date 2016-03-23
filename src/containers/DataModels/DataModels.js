@@ -7,18 +7,27 @@ export default class DataModels extends Component {
         children: PropTypes.element                // 嵌套的子级菜单
     };
 
+    /**
+     * 获取数据模型列表组件
+     *
+     * @return {Object} 数据模型列表组件
+     */
+    getDataModelListComponent = () => {
+        return (
+            <div>
+                <Helmet title="Data Model List"/>
+                <span>Data Model List</span>
+            </div>
+        );
+    }
+
     render() {
 
         const {children} = this.props;
 
         return (
             <div>
-                {children ? children :
-                    <div>
-                        <Helmet title="Data Model List"/>
-                        <span>Data Model List</span>
-                    </div>
-                }
+                {children ? children : this.getDataModelListComponent()}
             </div>
         );
     }

@@ -1,12 +1,27 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {TopNavbar, Sidebar, Footer} from 'components';
+import {TopNavbar, Sidebar, Breadcrumb, Footer} from 'components';
 
 export default class Portal extends Component {
 
     static propTypes = {
-        children: PropTypes.object.isRequired
+        children: PropTypes.object
     };
+
+    /**
+     * 获取首页组件
+     *
+     * @return {Object} 首页组件
+     */
+    getHomeComponent = () => {
+        return (
+            <div>
+                <Helmet title="Home"/>
+                <Breadcrumb />
+                <span>Home</span>
+            </div>
+        );
+    }
 
     render() {
 
@@ -18,12 +33,7 @@ export default class Portal extends Component {
                 <div id="page-wrapper" className="gray-bg">
                     <TopNavbar />
                     <div>
-                        {children ? children :
-                            <div>
-                                <Helmet title="Home"/>
-                                <span>Home</span>
-                            </div>
-                        }
+                        {children ? children : this.getHomeComponent()}
                     </div>
                     <Footer />
                 </div>

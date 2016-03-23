@@ -7,18 +7,27 @@ export default class Roles extends Component {
         children: PropTypes.element                // 嵌套的子级菜单
     };
 
+    /**
+     * 获取角色列表组件
+     *
+     * @return {Object} 角色列表组件
+     */
+    getRoleListComponent = () => {
+        return (
+            <div>
+                <Helmet title="Role List"/>
+                <span>Role List</span>
+            </div>
+        );
+    }
+
     render() {
 
         const {children} = this.props;
 
         return (
             <div>
-                {children ? children :
-                    <div>
-                        <Helmet title="Role List"/>
-                        <span>Role List</span>
-                    </div>
-                }
+                {children ? children : this.getRoleListComponent()}
             </div>
         );
     }
