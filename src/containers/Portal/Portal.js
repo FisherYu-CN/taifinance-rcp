@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import Helmet from 'react-helmet';
 import {TopNavbar, Sidebar, Footer} from 'components';
 
 export default class Portal extends Component {
@@ -8,12 +9,22 @@ export default class Portal extends Component {
     };
 
     render() {
+
+        const {children} = this.props;
+
         return (
             <div id="wrapper">
                 <Sidebar />
                 <div id="page-wrapper" className="gray-bg">
                     <TopNavbar />
-                    <div>{this.props.children}</div>
+                    <div>
+                        {children ? children :
+                            <div>
+                                <Helmet title="Home"/>
+                                <span>Home</span>
+                            </div>
+                        }
+                    </div>
                     <Footer />
                 </div>
             </div>

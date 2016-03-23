@@ -62,7 +62,7 @@ export default class Sidebar extends Component {
                         </SidebarNavHeader>
 
                         { /* 侧边导航栏导航项 - 首页 */ }
-                        <SidebarNavItem id="home" titleId="sidebar.nav.home" href="/portal/home" iconClass="fa-home" />
+                        <SidebarNavItem id="home" titleId="sidebar.nav.home" href="/portal" iconClass="fa-home" />
 
                         { /* 侧边导航栏导航项 - 模型管理 */ }
                         <SidebarNavItem id="datamodels" titleId="sidebar.nav.datamodel" iconClass="fa-cubes">

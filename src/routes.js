@@ -6,7 +6,7 @@ import React from 'react';
 import {IndexRoute, Route} from 'react-router';
 import {isLoaded as isAuthLoaded, load as loadAuth} from 'redux/modules/auth';
 import {
-    App, Landing, Signin, Signup, Forgot, ForgotSuccess, PasswordReset, PasswordResetInvalid, PasswordResetSuccess, Portal, Home, Forbidden, NotFound,
+    App, Landing, Signin, Signup, Forgot, ForgotSuccess, PasswordReset, PasswordResetInvalid, PasswordResetSuccess, Portal, Forbidden, NotFound,
     DataModels, DataModel, DataModelForm, DataModelInvoke, Industries, Industry, IndustryForm,
     IdCardValidity, BankCardValidity, BankCardUsage, IndividualPortrait, EnterprisePortrait,
     PhoneNumberValidity, PhoneNumberAmount, PhoneNumberCreditLevel, PhoneNumberExpense, PhoneNumberArrearage, PhoneNumberDowntime,
@@ -53,9 +53,6 @@ export default (store) => {
             { /* 需要登录的路由 */ }
             <Route onEnter={requireLogin}>
                 <Route path="portal" component={Portal}>
-
-                    { /* 首页 */ }
-                    <Route path="home" component={Home} />
 
                     { /* 模型管理 */ }
                     <Route path="datamodels" component={DataModels}>
