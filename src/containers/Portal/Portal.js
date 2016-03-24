@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import {TopNavbar, Sidebar, Breadcrumb, Footer} from 'components';
+import {TopNavbar, Sidebar, Footer} from 'components';
 
 export default class Portal extends Component {
 
@@ -17,7 +17,6 @@ export default class Portal extends Component {
         return (
             <div>
                 <Helmet title="Home"/>
-                <Breadcrumb />
                 <span>Home</span>
             </div>
         );

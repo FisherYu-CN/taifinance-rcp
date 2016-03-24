@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import {Breadcrumb} from 'components';
 
 export default class IndustryCommerceEnterprise extends Component {
 
@@ -7,7 +8,7 @@ export default class IndustryCommerceEnterprise extends Component {
         return (
             <div>
                 <Helmet title="Industry Commerce Enterprise"/>
-                <span>Industry Commerce Enterprise</span>
+                <Breadcrumb />
             </div>
         );
     }

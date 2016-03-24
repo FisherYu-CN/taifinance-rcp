@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
+import {Breadcrumb} from 'components';
 
 export default class Users extends Component {
 
@@ -16,7 +17,7 @@ export default class Users extends Component {
         return (
             <div>
                 <Helmet title="User List"/>
-                <span>User List</span>
+                <Breadcrumb />
             </div>
         );
     }

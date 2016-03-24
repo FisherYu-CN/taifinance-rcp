@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import {Breadcrumb} from 'components';
 
 export default class IndustryForm extends Component {
 
@@ -7,7 +8,7 @@ export default class IndustryForm extends Component {
         return (
             <div>
                 <Helmet title="Industry Form"/>
-                <span>Industry Form</span>
+                <Breadcrumb />
             </div>
         );
     }

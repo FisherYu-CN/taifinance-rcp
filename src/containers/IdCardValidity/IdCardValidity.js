@@ -9,7 +9,6 @@ export default class IdCardValidity extends Component {
             <div>
                 <Helmet title="Id Card Validity"/>
                 <Breadcrumb />
-                <span>Id Card Validity</span>
             </div>
         );
     }

@@ -45,77 +45,77 @@ export default class Sidebar extends Component {
                         <SidebarNavHeader name={name} company={company} profileImageUrl={profileImageUrl}>
                             <LinkContainer to="/portal/users/profile">
                                 <MenuItem>
-                                    <FormattedMessage id="sidebar.header.menus.profile" />
+                                    <FormattedMessage id="sidenav.header.menus.profile" />
                                 </MenuItem>
                             </LinkContainer>
                             <LinkContainer to="/portal/users/password">
                                 <MenuItem>
-                                    <FormattedMessage id="sidebar.header.menus.password" />
+                                    <FormattedMessage id="sidenav.header.menus.password" />
                                 </MenuItem>
                             </LinkContainer>
                             <MenuItem divider />
                             <LinkContainer to="/api/auth/signout">
                                 <MenuItem>
-                                    <FormattedMessage id="sidebar.header.menus.signout" />
+                                    <FormattedMessage id="sidenav.header.menus.signout" />
                                 </MenuItem>
                             </LinkContainer>
                         </SidebarNavHeader>
 
                         { /* 侧边导航栏导航项 - 首页 */ }
-                        <SidebarNavItem id="home" titleId="sidebar.nav.home" href="/portal" iconClass="fa-home" />
+                        <SidebarNavItem id="home" titleId="sidenav.home" href="/portal" iconClass="fa-home" />
 
                         { /* 侧边导航栏导航项 - 模型管理 */ }
-                        <SidebarNavItem id="datamodels" titleId="sidebar.nav.datamodel" iconClass="fa-cubes">
+                        <SidebarNavItem id="datamodels" titleId="sidenav.datamodel" href="/portal/datamodels" iconClass="fa-cubes">
                             <SidebarNav>
-                                <SidebarNavItem id="datamodels.industry" titleId="sidebar.nav.datamodel.industry" href="/portal/industries" />
-                                <SidebarNavItem id="datamodels.model" titleId="sidebar.nav.datamodel.model" href="/portal/datamodels" />
+                                <SidebarNavItem id="datamodels.model" titleId="sidenav.datamodel.datamodel" href="/portal/datamodels" />
+                                <SidebarNavItem id="datamodels.industry" titleId="sidenav.datamodel.industry" href="/portal/industries" />
                             </SidebarNav>
                         </SidebarNavItem>
 
                         { /* 侧边导航栏导航项 - 银联数据 */ }
-                        <SidebarNavItem id="unionpay" titleId="sidebar.nav.unionpay" iconClass="fa-credit-card">
+                        <SidebarNavItem id="unionpay" titleId="sidenav.unionpay" href="/portal/unionpay/idcard/validity" iconClass="fa-credit-card">
                             <SidebarNav>
-                                <SidebarNavItem id="unionpay.idcard.validity" titleId="sidebar.nav.unionpay.idcard.validity" href="/portal/unionpay/idcard/validity" />
-                                <SidebarNavItem id="unionpay.bankcard.validity" titleId="sidebar.nav.unionpay.bankcard.validity" href="/portal/unionpay/bankcard/validity" />
-                                <SidebarNavItem id="unionpay.bankcard.usage" titleId="sidebar.nav.unionpay.bankcard.usage" href="/portal/unionpay/bankcard/usage" />
-                                <SidebarNavItem id="unionpay.portrait.individual" titleId="sidebar.nav.unionpay.portrait.individual" href="/portal/unionpay/portrait/individual" />
-                                <SidebarNavItem id="unionpay.portrait.enterprise" titleId="sidebar.nav.unionpay.portrait.enterprise" href="/portal/unionpay/portrait/enterprise" />
+                                <SidebarNavItem id="unionpay.idcard.validity" titleId="sidenav.unionpay.idcard.validity" href="/portal/unionpay/idcard/validity" />
+                                <SidebarNavItem id="unionpay.bankcard.validity" titleId="sidenav.unionpay.bankcard.validity" href="/portal/unionpay/bankcard/validity" />
+                                <SidebarNavItem id="unionpay.bankcard.usage" titleId="sidenav.unionpay.bankcard.usage" href="/portal/unionpay/bankcard/usage" />
+                                <SidebarNavItem id="unionpay.portrait.individual" titleId="sidenav.unionpay.portrait.individual" href="/portal/unionpay/portrait/individual" />
+                                <SidebarNavItem id="unionpay.portrait.enterprise" titleId="sidenav.unionpay.portrait.enterprise" href="/portal/unionpay/portrait/enterprise" />
                             </SidebarNav>
                         </SidebarNavItem>
 
                         { /* 侧边导航栏导航项 - 电信运营商数据 */ }
-                        <SidebarNavItem id="telecom" titleId="sidebar.nav.telecom" iconClass="fa-phone">
+                        <SidebarNavItem id="telecom" titleId="sidenav.telecom" href="/portal/telecom/phonenumber/validity" iconClass="fa-phone">
                             <SidebarNav>
-                                <SidebarNavItem id="telecom.phonenumber.validity" titleId="sidebar.nav.telecom.phonenumber.validity" href="/portal/telecom/phonenumber/validity" />
-                                <SidebarNavItem id="telecom.phonenumber.amount" titleId="sidebar.nav.telecom.phonenumber.amount" href="/portal/telecom/phonenumber/amount" />
-                                <SidebarNavItem id="telecom.phonenumber.creditlevel" titleId="sidebar.nav.telecom.phonenumber.creditlevel" href="/portal/telecom/phonenumber/creditlevel" />
-                                <SidebarNavItem id="telecom.phonenumber.expense" titleId="sidebar.nav.telecom.phonenumber.expense" href="/portal/telecom/phonenumber/expense" />
-                                <SidebarNavItem id="telecom.phonenumber.arrearage" titleId="sidebar.nav.telecom.phonenumber.arrearage" href="/portal/telecom/phonenumber/arrearage" />
-                                <SidebarNavItem id="telecom.phonenumber.downtime" titleId="sidebar.nav.telecom.phonenumber.downtime" href="/portal/telecom/phonenumber/downtime" />
+                                <SidebarNavItem id="telecom.phonenumber.validity" titleId="sidenav.telecom.phonenumber.validity" href="/portal/telecom/phonenumber/validity" />
+                                <SidebarNavItem id="telecom.phonenumber.amount" titleId="sidenav.telecom.phonenumber.amount" href="/portal/telecom/phonenumber/amount" />
+                                <SidebarNavItem id="telecom.phonenumber.creditlevel" titleId="sidenav.telecom.phonenumber.creditlevel" href="/portal/telecom/phonenumber/creditlevel" />
+                                <SidebarNavItem id="telecom.phonenumber.expense" titleId="sidenav.telecom.phonenumber.expense" href="/portal/telecom/phonenumber/expense" />
+                                <SidebarNavItem id="telecom.phonenumber.arrearage" titleId="sidenav.telecom.phonenumber.arrearage" href="/portal/telecom/phonenumber/arrearage" />
+                                <SidebarNavItem id="telecom.phonenumber.downtime" titleId="sidenav.telecom.phonenumber.downtime" href="/portal/telecom/phonenumber/downtime" />
                             </SidebarNav>
                         </SidebarNavItem>
 
                         { /* 侧边导航栏导航项 - 工商数据 */ }
-                        <SidebarNavItem id="industrycommerce" titleId="sidebar.nav.industrycommerce" iconClass="fa-building">
+                        <SidebarNavItem id="industrycommerce" titleId="sidenav.industrycommerce" href="/portal/industrycommerce/individual" iconClass="fa-building">
                             <SidebarNav>
-                                <SidebarNavItem id="industrycommerce.individual" titleId="sidebar.nav.industrycommerce.individual" href="/portal/industrycommerce/individual" />
-                                <SidebarNavItem id="industrycommerce.enterprise" titleId="sidebar.nav.industrycommerce.enterprise" href="/portal/industrycommerce/enterprise" />
+                                <SidebarNavItem id="industrycommerce.individual" titleId="sidenav.industrycommerce.individual" href="/portal/industrycommerce/individual" />
+                                <SidebarNavItem id="industrycommerce.enterprise" titleId="sidenav.industrycommerce.enterprise" href="/portal/industrycommerce/enterprise" />
                             </SidebarNav>
                         </SidebarNavItem>
 
                         { /* 侧边导航栏导航项 - 法院黑名单数据 */ }
-                        <SidebarNavItem id="courtblacklist" titleId="sidebar.nav.courtblacklist" iconClass="fa-legal">
+                        <SidebarNavItem id="courtblacklist" titleId="sidenav.courtblacklist" href="/portal/courtblacklist/dishonestdebtor" iconClass="fa-legal">
                             <SidebarNav>
-                                <SidebarNavItem id="courtblacklist.dishonestdebtor" titleId="sidebar.nav.courtblacklist.dishonestdebtor" href="/portal/courtblacklist/dishonestdebtor" />
-                                <SidebarNavItem id="courtblacklist.enforcement" titleId="sidebar.nav.courtblacklist.enforcement" href="/portal/courtblacklist/enforcement" />
+                                <SidebarNavItem id="courtblacklist.dishonestdebtor" titleId="sidenav.courtblacklist.dishonestdebtor" href="/portal/courtblacklist/dishonestdebtor" />
+                                <SidebarNavItem id="courtblacklist.enforcement" titleId="sidenav.courtblacklist.enforcement" href="/portal/courtblacklist/enforcement" />
                             </SidebarNav>
                         </SidebarNavItem>
 
                         { /* 侧边导航栏导航项 - 系统管理 */ }
-                        <SidebarNavItem id="system" titleId="sidebar.nav.system" iconClass="fa-cogs">
+                        <SidebarNavItem id="system" titleId="sidenav.system" href="/portal/users" iconClass="fa-cogs">
                             <SidebarNav>
-                                <SidebarNavItem id="users" titleId="sidebar.nav.users" href="/portal/users" />
-                                <SidebarNavItem id="roles" titleId="sidebar.nav.roles" href="/portal/roles" />
+                                <SidebarNavItem id="users" titleId="sidenav.users" href="/portal/users" />
+                                <SidebarNavItem id="roles" titleId="sidenav.roles" href="/portal/roles" />
                             </SidebarNav>
                         </SidebarNavItem>
                     </SidebarNav>

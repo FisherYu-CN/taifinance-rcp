@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import {Breadcrumb} from 'components';
 
 export default class BankCardUsage extends Component {
 
@@ -7,7 +8,7 @@ export default class BankCardUsage extends Component {
         return (
             <div>
                 <Helmet title="Bank Card Usage"/>
-                <span>Bank Card Usage</span>
+                <Breadcrumb />
             </div>
         );
     }

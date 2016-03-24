@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import {Breadcrumb} from 'components';
 
 export default class PhoneNumberExpense extends Component {
 
@@ -7,7 +8,7 @@ export default class PhoneNumberExpense extends Component {
         return (
             <div>
                 <Helmet title="Phone Number Expense"/>
-                <span>Phone Number Expense</span>
+                <Breadcrumb />
             </div>
         );
     }

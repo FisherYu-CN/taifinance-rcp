@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import {FormattedMessage} from 'react-intl';
 import Helmet from 'react-helmet';
+import {Breadcrumb} from 'components';
 
 export default class DataModelInvoke extends Component {
 
@@ -7,7 +9,9 @@ export default class DataModelInvoke extends Component {
         return (
             <div>
                 <Helmet title="Data Model Invoke"/>
-                <span>Data Model Invoke</span>
+                <Breadcrumb>
+                    <FormattedMessage id="datamodel.invoke.module" />
+                </Breadcrumb>
             </div>
         );
     }

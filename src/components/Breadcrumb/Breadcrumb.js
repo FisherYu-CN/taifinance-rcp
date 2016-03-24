@@ -14,8 +14,11 @@ export default class Breadcrumb extends Component {
 
     static propTypes = {
         navItems: PropTypes.object,                 // 导航项信息
-        navItemsStatus: PropTypes.object,          // 导航项状态
-        children: PropTypes.element
+        navItemsStatus: PropTypes.object,           // 导航项状态
+        children: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.element
+        ])
     };
 
     /**
@@ -59,6 +62,10 @@ export default class Breadcrumb extends Component {
 
             // 如果不在首页，则需要添加首页的链接
             if (activatedLeafNavItem.href !== navItems.home.href) {
+                breadcrumbNavItems.push(navItems.home);
+            }
+        } else {
+            if (navItems.home) {
                 breadcrumbNavItems.push(navItems.home);
             }
         }
