@@ -25,12 +25,13 @@ export default class DataModels extends Component {
      */
     getDataModelListComponent = () => {
 
-        const {formatMessage} = this.props.intl;
+        const {intl, ...props} = this.props;
+        const {formatMessage} = intl;
 
         return (
             <div>
-                <Helmet title={formatMessage(messages.dataModelListModule)}/>
-                <Breadcrumb>{formatMessage(messages.dataModelListModule)}</Breadcrumb>
+                <Helmet title={formatMessage(messages.dataModelListModule)} />
+                <Breadcrumb subTitle={formatMessage(messages.dataModelListModule)} intl={intl} {...props} />
             </div>
         );
     }

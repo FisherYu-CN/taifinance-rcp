@@ -1,24 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
-import {FormattedMessage} from 'react-intl';
+import {intlShape} from 'react-intl';
 import Col from 'react-bootstrap/lib/Col';
-import {connect} from 'react-redux';
 
-@connect(
-    state => ({
-        navItems: state.sidebar.navItems,
-        navItemsStatus: state.sidebar.navItemsStatus
-    })
-)
 export default class Breadcrumb extends Component {
 
     static propTypes = {
-        navItems: PropTypes.object,                 // 导航项信息
-        navItemsStatus: PropTypes.object,           // 导航项状态
-        children: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.element
-        ])
+        subTitle: React.PropTypes.string,                       // 子级标题
+        intl: intlShape,                                        // 国际化API
+        navItems: PropTypes.object.isRequired,                  // 侧边栏导航项集合
+        navItemsStatus: PropTypes.object.isRequired             // 侧边栏导航项状态集合
     };
 
     /**
@@ -26,15 +17,18 @@ export default class Breadcrumb extends Component {
      *
      * @return {Object} 标题组件
      */
-    getTitleComponent = (item) => {
+    getTitle = (item) => {
+
+        const {formatMessage} = this.props.intl;
+
         if (item) {
-            return item.title ? item.title : <FormattedMessage id={item.titleId} />;
+            return item.title ? item.title : formatMessage({id: item.titleId});
         }
     }
 
     render() {
 
-        const {children, navItems, navItemsStatus} = this.props;
+        const {navItems, navItemsStatus, subTitle} = this.props;
 
         // 查找激活的叶导航项
         let activatedLeafNavItem;
@@ -74,11 +68,11 @@ export default class Breadcrumb extends Component {
 
         // 获取标题栏
         let header;
-        if (children) {
-            header = children;
+        if (subTitle) {
+            header = subTitle;
         } else {
             if (breadcrumbNavItems.length > 0) {
-                header = this.getTitleComponent(breadcrumbNavItems[breadcrumbNavItems.length - 1]);
+                header = this.getTitle(breadcrumbNavItems[breadcrumbNavItems.length - 1]);
             }
         }
 
@@ -88,15 +82,15 @@ export default class Breadcrumb extends Component {
                     <h2>{header}</h2>
                     <ol className="breadcrumb">
                         {breadcrumbNavItems.map((item, index) => {
-                            const titleComponent = this.getTitleComponent(item);
-                            if (index === breadcrumbNavItems.length - 1 && !children) {
+                            const titleComponent = this.getTitle(item);
+                            if (index === breadcrumbNavItems.length - 1 && !subTitle) {
                                 return (<li key={index}><strong>{titleComponent}</strong></li>);
                             }
                             return (<li key={index}><Link to={item.href ? item.href : ''}>{titleComponent}</Link></li>);
                         })}
 
                         {/** 如果自定义了子标题，则子标题为激活的一级 */}
-                        {children && <li><strong>{children}</strong></li>}
+                        {subTitle && <li><strong>{subTitle}</strong></li>}
                     </ol>
                 </Col>
             </div>

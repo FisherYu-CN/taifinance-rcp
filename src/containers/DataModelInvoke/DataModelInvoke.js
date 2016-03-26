@@ -19,12 +19,13 @@ export default class DataModelInvoke extends Component {
 
     render() {
 
-        const {formatMessage} = this.props.intl;
+        const {intl, ...props} = this.props;
+        const {formatMessage} = intl;
 
         return (
             <div>
                 <Helmet title={formatMessage(messages.dataModelInvokeModule)}/>
-                <Breadcrumb>{formatMessage(messages.dataModelInvokeModule)}</Breadcrumb>
+                <Breadcrumb subTitle={formatMessage(messages.dataModelInvokeModule)} intl={intl} {...props} />
             </div>
         );
     }

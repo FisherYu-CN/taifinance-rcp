@@ -24,15 +24,16 @@ export default class DataModelForm extends Component {
 
     render() {
 
-        const {formatMessage} = this.props.intl;
-        const {id} = this.props.params;
+        const {intl, params, ...props} = this.props;
+        const {formatMessage} = intl;
+        const {id} = params;
 
         const title = id ? formatMessage(messages.dataModelEditModule) : formatMessage(messages.dataModelCreateModule);
 
         return (
             <div>
                 <Helmet title={title}/>
-                <Breadcrumb>{title}</Breadcrumb>
+                <Breadcrumb subTitle={title} intl={intl} {...props} />
             </div>
         );
     }
