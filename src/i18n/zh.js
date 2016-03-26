@@ -31,6 +31,9 @@ export default {
     "sidenav.users": "用户管理",
     "sidenav.roles": "角色管理",
 
+    /** 首页 */
+    "home.module": "首页",
+
     /** 模型管理 */
     "datamodel.list.module": "模型列表",
     "datamodel.create.module": "新增模型",

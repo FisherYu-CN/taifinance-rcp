@@ -1,24 +1,38 @@
 import React, {Component, PropTypes} from 'react';
-import {FormattedMessage} from 'react-intl';
+import {intlShape, defineMessages} from 'react-intl';
 import Helmet from 'react-helmet';
 import {Breadcrumb} from 'components';
+
+// 定义国际化信息
+const messages = defineMessages({
+    dataModelCreateModule: {
+        id: 'datamodel.create.module',
+        defaultMessage: 'Create Data Model',
+    },
+    dataModelEditModule: {
+        id: 'datamodel.edit.module',
+        defaultMessage: 'Edit Data Model',
+    }
+});
 
 export default class DataModelForm extends Component {
 
     static propTypes = {
-        id: PropTypes.string
+        intl: intlShape,                           // 国际化API
+        params: PropTypes.object                   // 路由参数
     };
 
     render() {
 
-        const {id} = this.props;
+        const {formatMessage} = this.props.intl;
+        const {id} = this.props.params;
+
+        const title = id ? formatMessage(messages.dataModelEditModule) : formatMessage(messages.dataModelCreateModule);
 
         return (
             <div>
-                <Helmet title="Data Model Form"/>
-                <Breadcrumb>
-                    {id ? <FormattedMessage id="datamodel.edit.module" /> : <FormattedMessage id="datamodel.new.module" />}
-                </Breadcrumb>
+                <Helmet title={title}/>
+                <Breadcrumb>{title}</Breadcrumb>
             </div>
         );
     }

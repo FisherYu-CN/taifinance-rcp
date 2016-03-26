@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {intlShape, injectIntl, defineMessages} from 'react-intl';
+import {intlShape, defineMessages} from 'react-intl';
 import Helmet from 'react-helmet';
 import {Breadcrumb} from 'components';
 
@@ -11,12 +11,11 @@ const messages = defineMessages({
     }
 });
 
-@injectIntl
 export default class DataModels extends Component {
 
     static propTypes = {
-        intl: intlShape.isRequired,
-        children: PropTypes.element                // 嵌套的子级菜单
+        intl: intlShape,                           // 国际化API
+        children: PropTypes.element                // 子级组件
     };
 
     /**
@@ -38,11 +37,11 @@ export default class DataModels extends Component {
 
     render() {
 
-        const {children} = this.props;
+        const {children, ...props} = this.props;
 
         return (
             <div>
-                {children ? children : this.getDataModelListComponent()}
+                {children ? React.cloneElement(children, {...props}) : this.getDataModelListComponent()}
             </div>
         );
     }
