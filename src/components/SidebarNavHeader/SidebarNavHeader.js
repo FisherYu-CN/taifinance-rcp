@@ -4,9 +4,7 @@ import Dropdown from 'react-bootstrap/lib/Dropdown';
 export default class SidebarNavHeader extends Component {
 
     static propTypes = {
-        name: PropTypes.string.isRequired,              // 用户名称
-        company: PropTypes.string.isRequired,           // 用户公司
-        profileImageUrl: PropTypes.string.isRequired,   // 用户头像url
+        user: PropTypes.object.isRequired,              // 用户信息
         children: React.PropTypes.oneOfType([           // 快捷菜单项
             React.PropTypes.element,
             PropTypes.arrayOf(PropTypes.element)
@@ -16,7 +14,9 @@ export default class SidebarNavHeader extends Component {
     // 组件渲染逻辑
     render() {
 
-        const {name, company, profileImageUrl, children} = this.props;
+        const {user, children} = this.props;
+        const {name, company, profileImageUrl} = user;
+
 
         return (
             <li className="nav-header">

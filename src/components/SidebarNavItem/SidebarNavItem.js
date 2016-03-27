@@ -1,31 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 import Collapse from 'react-bootstrap/lib/Collapse';
-import {FormattedMessage} from 'react-intl';
-import {routeActions} from 'react-router-redux';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as sidebarActions from 'redux/modules/sidebar';
 
-@connect(
-    state => ({
-        navItems: state.sidebar.navItems,
-        navItemsStatus: state.sidebar.navItemsStatus
-    }),
-    dispatch => bindActionCreators(
-        Object.assign({}, sidebarActions, {pushState: routeActions.push}),
-        dispatch
-    )
-)
 export default class SidebarNavItem extends Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,            // id
         parentId: PropTypes.string,                 // 父菜单id
-        title: PropTypes.string,                    // 标题
-        titleId: PropTypes.string,                  // 标题在国际化文件中的id
-        href: PropTypes.string,                     // 指向页面的url
+        title: PropTypes.string.isRequired,         // 标题
+        href: PropTypes.string.isRequired,          // 指向页面的url
         iconClass: PropTypes.string,                // 图标class名称
-        onlyActiveOnIndex: PropTypes.string,        // 是否只在默认路由情况下激活
+        onlyActiveOnIndex: PropTypes.bool,          // 是否只在默认路由情况下激活
         children: PropTypes.element,                // 嵌套的子级菜单
         navItems: PropTypes.object,                 // 导航项信息
         navItemsStatus: PropTypes.object,           // 导航项状态
@@ -40,28 +24,34 @@ export default class SidebarNavItem extends Component {
     };
 
     componentDidMount() {
+
+        const {router} = this.context;
+        const {id, parentId, title, href, onlyActiveOnIndex, children, registerSidebarNavItem} = this.props;
+
         let isActive;
-        if (this.props.href) {
-            isActive = this.context.router.isActive(this.props.href, this.props.onlyActiveOnIndex);
+        if (href) {
+            isActive = router.isActive({pathname: href}, onlyActiveOnIndex);
         } else {
             isActive = false;
         }
 
         // 注册导航项
-        this.props.registerSidebarNavItem(
-            this.props.id,
-            this.props.parentId,
-            this.props.children ? true : false,
-            this.props.title,
-            this.props.titleId,
-            this.props.href,
+        registerSidebarNavItem(
+            id,
+            parentId,
+            children ? true : false,
+            title,
+            href,
             isActive
         );
     }
 
     componentWillUnmount() {
+
+        const {id, unregisterSidebarNavItem} = this.props;
+
         // 反注册导航项
-        this.props.unregisterSidebarNavItem(this.props.id);
+        unregisterSidebarNavItem(id);
     }
 
     /**
@@ -70,11 +60,16 @@ export default class SidebarNavItem extends Component {
      * @param event {Object} 选取导航项事件
      */
     selectSidebarNavItem = (event) => {
+
+        const {id, href, children, selectSidebarNavItem, pushState} = this.props;
+
         event.preventDefault();
-        if (this.props.children) {
-            this.props.selectSidebarNavItem(this.props.id);
+        if (children) {
+            // 点击导航项组，改变展开和激活状态
+            selectSidebarNavItem(id);
         } else {
-            this.props.pushState(this.props.href);
+            // 点击导航项, 路由变更
+            pushState(href);
         }
     }
 
@@ -83,7 +78,7 @@ export default class SidebarNavItem extends Component {
 
         const styles = require('./SidebarNavItem.scss');
 
-        const {id, parentId, title, titleId, href, iconClass, navItems, navItemsStatus, children} = this.props;
+        const {id, parentId, title, href, iconClass, navItems, navItemsStatus, children, ...props} = this.props;
         const active = navItemsStatus[id] ? navItemsStatus[id].active : false;
         const expand = navItemsStatus[id] ? navItemsStatus[id].expand : false;
 
@@ -101,14 +96,6 @@ export default class SidebarNavItem extends Component {
             }
         }
 
-        // 初始化标题
-        let titleComponent;
-        if (title) {
-            titleComponent = title;
-        } else if (titleId) {
-            titleComponent = <FormattedMessage id={titleId} />;
-        }
-
         return (
             <li className={styles.sidebarNavItem + (active ? ' active' : '')}>
                 <a href={href} onClick={(event) => this.selectSidebarNavItem(event)}>
@@ -116,7 +103,7 @@ export default class SidebarNavItem extends Component {
                     {iconClass && level === 1 && <i className={'fa ' + iconClass}></i>}
 
                     { /* 菜单项标题 */ }
-                    {level === 1 ? <span className="nav-label">{titleComponent}</span> : titleComponent}
+                    {level === 1 ? <span className="nav-label">{title}</span> : title}
 
                     { /* 第一二层菜单且存在子级菜单时，需要添加箭头图标 */ }
                     {level < 3 && children && <span className="fa arrow"></span>}
@@ -124,7 +111,13 @@ export default class SidebarNavItem extends Component {
                 { /* 嵌套的子级菜单 */ }
                 <Collapse in={expand}>
                     <div>
-                        {children && React.cloneElement(children, {parentId: id, level: level + 1, expand: expand})}
+                        {children && React.cloneElement(children, Object.assign({}, {
+                            parentId: id,
+                            level: level + 1,
+                            expand: expand,
+                            navItems: navItems,
+                            navItemsStatus: navItems
+                        }, {...props}))}
                     </div>
                 </Collapse>
             </li>

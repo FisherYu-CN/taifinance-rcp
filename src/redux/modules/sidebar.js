@@ -28,7 +28,6 @@ export default function reducer(state = initialState, action = {}) {
                 parentId: action.navItem.parentId,
                 hasChildren: action.navItem.hasChildren,
                 title: action.navItem.title,
-                titleId: action.navItem.titleId,
                 href: action.navItem.href
             };
 
@@ -181,13 +180,12 @@ export function toggleSidebar() {
  * @param id {string} 导航项id
  * @param parentId {?string} 父导航项id
  * @param hasChildren {boolean} 是否包含子导航项
- * @param title {?string} 导航项标题
- * @param titleId {?string} 导航项标题的国际化标签id
+ * @param title {string} 导航项标题
  * @param href {?string} 导航项链接url
  * @param active {boolean} 导航项是否激活
  * @return {Object} 注册侧边栏导航项Action
  */
-export function registerSidebarNavItem(id, parentId, hasChildren, title, titleId, href, active) {
+export function registerSidebarNavItem(id, parentId, hasChildren, title, href, active) {
     return {
         type: REGISTER_SIDEBAR_NAV_ITEM,
         navItem: {
@@ -195,7 +193,6 @@ export function registerSidebarNavItem(id, parentId, hasChildren, title, titleId
             parentId: parentId,
             hasChildren: hasChildren,
             title: title,
-            titleId: titleId,
             href: href,
             active: active
         }

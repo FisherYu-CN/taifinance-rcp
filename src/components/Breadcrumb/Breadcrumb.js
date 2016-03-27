@@ -8,23 +8,9 @@ export default class Breadcrumb extends Component {
     static propTypes = {
         subTitle: React.PropTypes.string,                       // 子级标题
         intl: intlShape,                                        // 国际化API
-        navItems: PropTypes.object.isRequired,                  // 侧边栏导航项集合
-        navItemsStatus: PropTypes.object.isRequired             // 侧边栏导航项状态集合
+        navItems: PropTypes.object,                             // 侧边栏导航项集合
+        navItemsStatus: PropTypes.object                        // 侧边栏导航项状态集合
     };
-
-    /**
-     * 获取标题组件
-     *
-     * @return {Object} 标题组件
-     */
-    getTitle = (item) => {
-
-        const {formatMessage} = this.props.intl;
-
-        if (item) {
-            return item.title ? item.title : formatMessage({id: item.titleId});
-        }
-    }
 
     render() {
 
@@ -72,7 +58,7 @@ export default class Breadcrumb extends Component {
             header = subTitle;
         } else {
             if (breadcrumbNavItems.length > 0) {
-                header = this.getTitle(breadcrumbNavItems[breadcrumbNavItems.length - 1]);
+                header = breadcrumbNavItems[breadcrumbNavItems.length - 1].title;
             }
         }
 
@@ -82,11 +68,11 @@ export default class Breadcrumb extends Component {
                     <h2>{header}</h2>
                     <ol className="breadcrumb">
                         {breadcrumbNavItems.map((item, index) => {
-                            const titleComponent = this.getTitle(item);
+                            const {title, href} = item;
                             if (index === breadcrumbNavItems.length - 1 && !subTitle) {
-                                return (<li key={index}><strong>{titleComponent}</strong></li>);
+                                return (<li key={index}><strong>{title}</strong></li>);
                             }
-                            return (<li key={index}><Link to={item.href ? item.href : ''}>{titleComponent}</Link></li>);
+                            return (<li key={index}><Link to={href ? href : ''}>{title}</Link></li>);
                         })}
 
                         {/** 如果自定义了子标题，则子标题为激活的一级 */}
