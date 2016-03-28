@@ -35,7 +35,15 @@ export default class SidebarNavItem extends Component {
             isActive = false;
         }
 
-        // 注册导航项
+        // 注册导航项, 没有选择在componentWillMount时注册的原因是：服务器端做首屏渲染时，
+        // 只会渲染一次而不会更新组件状态，因此即使在componentWillMount时注册导航项并更
+        // 新状态，这样的状态变更也不会引起服务器端同步更新组件状态。而当客户端进行渲染时，
+        // 由于状态变更会在客户端引起多次组件的状态更新，从而使得客户端渲染得到的HTML与
+        // 从服务器端得到的HTML不匹配(checksum值不一致)，在此情况下，客户端会整个重新渲染，
+        // 使得服务端首屏渲染就失去了意义。与其如此，不如不在服务端注册组件，把注册组件的工
+        // 作放在客户端完成。这样，服务端渲染的基本页面，可以在客户端被使用，并在此基础上做
+        // 一些细粒度的状态更新，而componentDidMount方法只在客户端被调用，因此更适合承载
+        // 导航项注册这样的工作。
         registerSidebarNavItem(
             id,
             parentId,
@@ -116,7 +124,7 @@ export default class SidebarNavItem extends Component {
                             level: level + 1,
                             expand: expand,
                             navItems: navItems,
-                            navItemsStatus: navItems
+                            navItemsStatus: navItemsStatus
                         }, {...props}))}
                     </div>
                 </Collapse>

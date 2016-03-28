@@ -144,11 +144,6 @@ export default class Sidebar extends Component {
     static propTypes = {
         user: PropTypes.object.isRequired,                      // 用户信息
         activePathname: PropTypes.string,                       // 当前URL路径
-        navItems: PropTypes.object,                             // 侧边栏导航项集合
-        navItemsStatus: PropTypes.object,                       // 侧边栏导航项状态集合
-        toggleSidebar: PropTypes.func,                          // 切换侧边栏导航项展开/收起状态
-        registerSidebarNavItem: PropTypes.func,                 // 注册一个侧边栏导航项
-        unregisterSidebarNavItem: PropTypes.func,               // 反注册一个侧边栏导航项
         selectSidebarNavItem: PropTypes.func,                   // 选择侧边栏导航项
         intl: intlShape,                                        // 国际化API
     };
