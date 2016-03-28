@@ -1,11 +1,21 @@
 import React, {Component, PropTypes} from 'react';
+import {intlShape, defineMessages} from 'react-intl';
 import Helmet from 'react-helmet';
 import {Breadcrumb} from 'components';
+
+// 定义国际化信息
+const messages = defineMessages({
+    userListModule: {
+        id: 'user.list.module',
+        defaultMessage: 'User List',
+    }
+});
 
 export default class Users extends Component {
 
     static propTypes = {
-        children: PropTypes.element                // 嵌套的子级菜单
+        intl: intlShape,                           // 国际化API
+        children: PropTypes.element                // 子级组件
     };
 
     /**
@@ -14,21 +24,24 @@ export default class Users extends Component {
      * @return {Object} 用户列表组件
      */
     getUserListComponent = () => {
+        const {intl, ...props} = this.props;
+        const {formatMessage} = intl;
+
         return (
             <div>
-                <Helmet title="User List"/>
-                <Breadcrumb />
+                <Helmet title={formatMessage(messages.userListModule)} />
+                <Breadcrumb subTitle={formatMessage(messages.userListModule)} intl={intl} {...props} />
             </div>
         );
     }
 
     render() {
 
-        const {children} = this.props;
+        const {children, ...props} = this.props;
 
         return (
             <div>
-                {children ? children : this.getUserListComponent()}
+                {children ? React.cloneElement(children, {...props}) : this.getUserListComponent()}
             </div>
         );
     }
