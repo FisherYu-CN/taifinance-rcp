@@ -1,7 +1,7 @@
 export default {
 
     /** 侧边导航栏 */
-    "sidenav.header.menus.profile": "个人资料",
+    "sidenav.header.menus.profile": "个人信息",
     "sidenav.header.menus.password": "修改密码",
     "sidenav.header.menus.signout": "注销",
     "sidenav.home": "首页",
@@ -73,6 +73,8 @@ export default {
     /** 用户管理 */
     "user.list.module": "用户列表",
     "user.display.module": "用户信息",
+    "user.profile.module": "个人信息",
+    "user.password.module": "修改密码",
 
     /** 角色管理 */
     "role.list.module": "角色列表",
