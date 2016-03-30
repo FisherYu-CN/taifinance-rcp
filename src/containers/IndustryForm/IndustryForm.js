@@ -33,7 +33,7 @@ export default class IndustryForm extends Component {
         return (
             <div>
                 <Helmet title={title}/>
-                <Breadcrumb subTitle={title} intl={intl} {...props} />
+                <Breadcrumb subTitle={title} {...props} />
             </div>
         );
     }

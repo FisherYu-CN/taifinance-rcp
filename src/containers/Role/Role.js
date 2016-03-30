@@ -25,7 +25,7 @@ export default class User extends Component {
         return (
             <div>
                 <Helmet title={formatMessage(messages.roleDisplayModule)}/>
-                <Breadcrumb subTitle={formatMessage(messages.roleDisplayModule)} intl={intl} {...props} />
+                <Breadcrumb subTitle={formatMessage(messages.roleDisplayModule)} {...props} />
             </div>
         );
     }

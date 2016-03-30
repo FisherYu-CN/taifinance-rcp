@@ -31,7 +31,7 @@ export default class DataModels extends Component {
         return (
             <div>
                 <Helmet title={formatMessage(messages.dataModelListModule)} />
-                <Breadcrumb subTitle={formatMessage(messages.dataModelListModule)} intl={intl} {...props} />
+                <Breadcrumb subTitle={formatMessage(messages.dataModelListModule)} {...props} />
             </div>
         );
     }

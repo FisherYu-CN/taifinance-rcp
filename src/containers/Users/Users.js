@@ -30,7 +30,7 @@ export default class Users extends Component {
         return (
             <div>
                 <Helmet title={formatMessage(messages.userListModule)} />
-                <Breadcrumb subTitle={formatMessage(messages.userListModule)} intl={intl} {...props} />
+                <Breadcrumb subTitle={formatMessage(messages.userListModule)} {...props} />
             </div>
         );
     }

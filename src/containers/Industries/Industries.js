@@ -31,7 +31,7 @@ export default class Industries extends Component {
         return (
             <div>
                 <Helmet title={formatMessage(messages.industryListModule)} />
-                <Breadcrumb subTitle={formatMessage(messages.industryListModule)} intl={intl} {...props} />
+                <Breadcrumb subTitle={formatMessage(messages.industryListModule)} {...props} />
             </div>
         );
     }

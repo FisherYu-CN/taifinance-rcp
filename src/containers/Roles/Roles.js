@@ -30,7 +30,7 @@ export default class Roles extends Component {
         return (
             <div>
                 <Helmet title={formatMessage(messages.roleListModule)} />
-                <Breadcrumb subTitle={formatMessage(messages.roleListModule)} intl={intl} {...props} />
+                <Breadcrumb subTitle={formatMessage(messages.roleListModule)} {...props} />
             </div>
         );
     }

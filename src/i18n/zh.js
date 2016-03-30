@@ -47,6 +47,29 @@ export default {
     "industry.display.module": "行业信息",
     "industry.edit.module": "编辑行业",
 
+    /** 银联数据 */
+    "idcard.validity.module": "身份证有效性验证",
+    "bankcard.validity.module": "银行卡有效性验证",
+    "bankcard.usage.module": "银行卡交易统计",
+    "portrait.individual.module": "个人客户肖像",
+    "portrait.enterprise.module": "企业客户肖像",
+
+    /** 电信运营商数据 */
+    "phonenumber.validity.module": "手机号有效性验证",
+    "phonenumber.amount.module": "手机号数量查询",
+    "phonenumber.creditlevel.module": "手机号信用等级查询",
+    "phonenumber.expense.module": "手机号消费等级查询",
+    "phonenumber.arrearage.module": "手机号欠费情况查询",
+    "phonenumber.downtime.module": "手机号停机情况查询",
+
+    /** 工商数据 */
+    "industrycommerce.individual.module": "个体注册信息查询",
+    "industrycommerce.enterprise.module": "企业注册信息查询",
+
+    /** 法院黑名单数据 */
+    "courtblacklist.dishonestdebtor.module": "失信人信息查询",
+    "courtblacklist.enforcement.module": "法院执行信息查询",
+
     /** 用户管理 */
     "user.list.module": "用户列表",
     "user.display.module": "用户信息",

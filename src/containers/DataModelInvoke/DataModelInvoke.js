@@ -25,7 +25,7 @@ export default class DataModelInvoke extends Component {
         return (
             <div>
                 <Helmet title={formatMessage(messages.dataModelInvokeModule)}/>
-                <Breadcrumb subTitle={formatMessage(messages.dataModelInvokeModule)} intl={intl} {...props} />
+                <Breadcrumb subTitle={formatMessage(messages.dataModelInvokeModule)} {...props} />
             </div>
         );
     }

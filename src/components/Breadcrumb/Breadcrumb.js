@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
-import {intlShape} from 'react-intl';
 import Col from 'react-bootstrap/lib/Col';
 
 export default class Breadcrumb extends Component {
@@ -8,8 +7,7 @@ export default class Breadcrumb extends Component {
     static propTypes = {
         subTitle: React.PropTypes.string,                       // 子级标题
         navItems: PropTypes.object,                             // 侧边栏导航项集合
-        navItemsStatus: PropTypes.object,                       // 侧边栏导航项状态集合
-        intl: intlShape                                         // 国际化API
+        navItemsStatus: PropTypes.object                        // 侧边栏导航项状态集合
     };
 
     render() {
