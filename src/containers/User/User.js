@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     userDisplayModule: {
         id: 'user.display.module',
-        defaultMessage: 'User',
+        defaultMessage: 'User'
     }
 });
 

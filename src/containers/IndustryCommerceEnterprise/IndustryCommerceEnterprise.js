@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     industryCommerceEnterpriseModule: {
         id: 'industrycommerce.enterprise.module',
-        defaultMessage: 'Industry Commerce Enterprise',
+        defaultMessage: 'Industry Commerce Enterprise'
     }
 });
 

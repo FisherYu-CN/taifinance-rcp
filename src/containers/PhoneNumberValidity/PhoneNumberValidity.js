@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     phoneNumberValidityModule: {
         id: 'phonenumber.validity.module',
-        defaultMessage: 'Phone Number Validity',
+        defaultMessage: 'Phone Number Validity'
     }
 });
 

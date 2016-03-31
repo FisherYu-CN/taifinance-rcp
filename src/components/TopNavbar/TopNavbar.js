@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {SidebarToggleButton} from 'components';
 
 export default class TopNavbar extends Component {

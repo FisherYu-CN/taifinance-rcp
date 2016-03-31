@@ -1,5 +1,15 @@
 export default {
 
+    /** 登录 */
+    "signin.module": "登录",
+    "signin.title": "泰融金服大数据风控平台",
+    "signin.input.username": "用户名",
+    "signin.input.password": "密码",
+    "signin.input.signin": "登录",
+    "signin.link.forgot": "忘记了您的密码？",
+    "signin.link.register.hint": "没有账户？",
+    "signin.link.register": "创建一个账户",
+
     /** 侧边导航栏 */
     "sidenav.header.menus.profile": "个人信息",
     "sidenav.header.menus.password": "修改密码",

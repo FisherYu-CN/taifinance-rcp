@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     enterprisePortraitModule: {
         id: 'portrait.enterprise.module',
-        defaultMessage: 'Enterprise Portrait',
+        defaultMessage: 'Enterprise Portrait'
     }
 });
 

@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     roleDisplayModule: {
         id: 'role.display.module',
-        defaultMessage: 'Role',
+        defaultMessage: 'Role'
     }
 });
 

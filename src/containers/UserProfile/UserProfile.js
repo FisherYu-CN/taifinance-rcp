@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     userProfileModule: {
         id: 'user.profile.module',
-        defaultMessage: 'Edit Profile',
+        defaultMessage: 'Edit Profile'
     }
 });
 

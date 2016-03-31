@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     userPasswordModule: {
         id: 'user.password.module',
-        defaultMessage: 'Change Password',
+        defaultMessage: 'Change Password'
     }
 });
 

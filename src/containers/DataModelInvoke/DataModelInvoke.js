@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     dataModelInvokeModule: {
         id: 'datamodel.invoke.module',
-        defaultMessage: 'Invoke Data Model',
+        defaultMessage: 'Invoke Data Model'
     }
 });
 

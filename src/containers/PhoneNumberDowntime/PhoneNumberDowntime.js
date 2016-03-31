@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     phoneNumberDowntimeModule: {
         id: 'phonenumber.downtime.module',
-        defaultMessage: 'Phone Number Downtime',
+        defaultMessage: 'Phone Number Downtime'
     }
 });
 

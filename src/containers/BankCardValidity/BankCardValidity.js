@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     bankCardValidityModule: {
         id: 'bankcard.validity.module',
-        defaultMessage: 'Bank Card Validity',
+        defaultMessage: 'Bank Card Validity'
     }
 });
 

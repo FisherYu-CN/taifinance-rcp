@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     idCardValidityModule: {
         id: 'idcard.validity.module',
-        defaultMessage: 'Id Card Validity',
+        defaultMessage: 'Id Card Validity'
     }
 });
 

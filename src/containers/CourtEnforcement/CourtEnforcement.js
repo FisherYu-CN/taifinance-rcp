@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     courtEnforcementModule: {
         id: 'courtblacklist.enforcement.module',
-        defaultMessage: 'Court Enforcement',
+        defaultMessage: 'Court Enforcement'
     }
 });
 

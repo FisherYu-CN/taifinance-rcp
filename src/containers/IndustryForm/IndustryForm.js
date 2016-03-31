@@ -7,11 +7,11 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     industryCreateModule: {
         id: 'industry.create.module',
-        defaultMessage: 'Create Industry',
+        defaultMessage: 'Create Industry'
     },
     industryEditModule: {
         id: 'industry.edit.module',
-        defaultMessage: 'Edit Industry',
+        defaultMessage: 'Edit Industry'
     }
 });
 

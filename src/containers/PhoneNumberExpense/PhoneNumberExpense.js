@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     phoneNumberExpenseModule: {
         id: 'phonenumber.expense.module',
-        defaultMessage: 'Phone Number Expense',
+        defaultMessage: 'Phone Number Expense'
     }
 });
 

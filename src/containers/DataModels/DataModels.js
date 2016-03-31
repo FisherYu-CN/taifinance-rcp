@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     dataModelListModule: {
         id: 'datamodel.list.module',
-        defaultMessage: 'Data Model List',
+        defaultMessage: 'Data Model List'
     }
 });
 

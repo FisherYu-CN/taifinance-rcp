@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     dishonestDebtorModule: {
         id: 'courtblacklist.dishonestdebtor.module',
-        defaultMessage: 'Dishonest Debtor',
+        defaultMessage: 'Dishonest Debtor'
     }
 });
 

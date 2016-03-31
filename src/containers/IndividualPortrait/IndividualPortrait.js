@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     individualPortraitModule: {
         id: 'portrait.individual.module',
-        defaultMessage: 'Individual Portrait',
+        defaultMessage: 'Individual Portrait'
     }
 });
 

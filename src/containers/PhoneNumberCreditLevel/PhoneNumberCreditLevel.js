@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     phoneNumberCreditLevelModule: {
         id: 'phonenumber.creditlevel.module',
-        defaultMessage: 'Phone Number Credit Level',
+        defaultMessage: 'Phone Number Credit Level'
     }
 });
 

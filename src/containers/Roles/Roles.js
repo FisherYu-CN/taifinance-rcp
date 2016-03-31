@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     roleListModule: {
         id: 'role.list.module',
-        defaultMessage: 'Role List',
+        defaultMessage: 'Role List'
     }
 });
 

@@ -7,11 +7,11 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     dataModelCreateModule: {
         id: 'datamodel.create.module',
-        defaultMessage: 'Create Data Model',
+        defaultMessage: 'Create Data Model'
     },
     dataModelEditModule: {
         id: 'datamodel.edit.module',
-        defaultMessage: 'Edit Data Model',
+        defaultMessage: 'Edit Data Model'
     }
 });
 

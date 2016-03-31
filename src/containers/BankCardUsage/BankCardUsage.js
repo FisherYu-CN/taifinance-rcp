@@ -7,7 +7,7 @@ import {Breadcrumb} from 'components';
 const messages = defineMessages({
     bankCardUsageModule: {
         id: 'bankcard.usage.module',
-        defaultMessage: 'Bank Card Usage',
+        defaultMessage: 'Bank Card Usage'
     }
 });
 
