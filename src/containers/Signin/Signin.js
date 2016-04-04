@@ -62,6 +62,7 @@ export default class Signin extends Component {
 	            	<div>
 	                	<h1 className="logo-name">TF</h1>
 	                	<h3>{formatMessage(messages.signinTitle)}</h3>
+                        <p>Risk Control Platform</p>
                         <form className="m-t" onSubmit={this.handleSubmit} noValidate>
                             <div className="form-group">
                                 <Input type="text" placeholder={formatMessage(messages.signinInputUsername)} />
