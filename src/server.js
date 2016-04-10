@@ -17,7 +17,6 @@ import PrettyError from 'pretty-error';
 import path from 'path';
 import http from 'http';
 import config from './config';
-import {sync as globSync} from 'glob';
 import {readFileSync} from 'fs';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';

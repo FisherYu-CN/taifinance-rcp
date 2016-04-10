@@ -28,7 +28,7 @@ const formatUrl = (path) => {
     return '/api' + adjustedPath;
 };
 
-export default class ApiClient {
+class _ApiClient {
 
     constructor(req) {
 
@@ -60,3 +60,7 @@ export default class ApiClient {
 
     }
 }
+
+const ApiClient = _ApiClient;
+
+export default ApiClient;
