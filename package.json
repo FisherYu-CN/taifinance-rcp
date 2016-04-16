@@ -38,8 +38,8 @@
             "env": {
                 "NODE_PATH": "./src",
                 "NODE_ENV": "production",
-                "PORT": 8080,
-                "APIPORT": 3030
+                "PORT": 6060,
+                "APIPORT": 4040
             }
         },
         "start-prod-api": {
@@ -47,7 +47,7 @@
             "env": {
                 "NODE_PATH": "./api",
                 "NODE_ENV": "production",
-                "APIPORT": 3030
+                "APIPORT": 4040
             }
         },
         "start-dev": {
@@ -55,8 +55,8 @@
             "env": {
                 "NODE_PATH": "./src",
                 "NODE_ENV": "development",
-                "PORT": 3000,
-                "APIPORT": 3030
+                "PORT": 6000,
+                "APIPORT": 4040
             }
         },
         "start-dev-api": {
@@ -64,7 +64,7 @@
             "env": {
                 "NODE_PATH": "./api",
                 "NODE_ENV": "development",
-                "APIPORT": 3030
+                "APIPORT": 4040
             }
         },
         "watch-client": {
@@ -72,8 +72,8 @@
             "env": {
                 "UV_THREADPOOL_SIZE": 100,
                 "NODE_PATH": "./src",
-                "PORT": 3000,
-                "APIPORT": 3030
+                "PORT": 6000,
+                "APIPORT": 4040
             }
         },
         "build": {
