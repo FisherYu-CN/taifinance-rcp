@@ -9,8 +9,8 @@ import {Provider} from 'react-redux';
 import {Router, browserHistory} from 'react-router';
 import {ReduxAsyncConnect} from 'redux-async-connect';
 import {IntlProvider, addLocaleData} from 'react-intl';
-import en from 'react-intl/locale-data/en';
 import zh from 'react-intl/locale-data/zh';
+import zhMessages from './i18n/zh.json';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
 import io from 'socket.io-client';
 import createStore from './redux/create';
@@ -21,10 +21,8 @@ import getRoutes from './routes';
 const client = new ApiClient();
 const history = useScroll(() => browserHistory)();
 const store = createStore(history, client, window.__data);
-const i18n = window.__i18n;
 
 // 添加两种语言支持
-addLocaleData(en);
 addLocaleData(zh);
 
 /**
@@ -63,7 +61,7 @@ const component = (
 const dest = document.getElementById('content');
 ReactDOM.render(
     <Provider store={store} key="provider">
-        <IntlProvider locale={i18n.locale} messages={i18n.messages}>
+        <IntlProvider locale="zh" messages={zhMessages}>
             {component}
         </IntlProvider>
     </Provider>,
@@ -84,7 +82,7 @@ if (__DEVTOOLS__ && !window.devToolsExtension) {
     const DevTools = require('./containers/DevTools/DevTools');
     ReactDOM.render(
         <Provider store={store} key="provider">
-            <IntlProvider locale={i18n.locale} messages={i18n.messages}>
+            <IntlProvider locale="zh" messages={zhMessages}>
                 <div>
                     {component}
                     <DevTools />

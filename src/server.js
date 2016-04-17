@@ -22,7 +22,6 @@ import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import Html from './helpers/Html';
 import getRoutes from './routes';
-import enMessages from './i18n/en';
 import zhMessages from './i18n/zh';
 
 // 获取国际化文件数据
@@ -91,9 +90,8 @@ const pretty = new PrettyError();
 app.use((req, res) => {
 
     // 根据请求的locale来获取相应的国际化配置
-    const translations = {en: enMessages, zh: zhMessages};
     const locale = 'zh';
-    const messages = translations[locale];
+    const messages = zhMessages;
     const i18n = {locale, messages};
 
     // 清除webpack缓存数据，因为开发环境中启用了热重载，脚本文件会被替换
@@ -153,7 +151,7 @@ app.use((req, res) => {
 
                 // 渲染页面并返回结果
                 res.send('<!doctype html>\n' +
-                    ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component} store={store} i18n={i18n}/>));
+                    ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component} store={store}/>));
             });
         }
         // 给定的location没有匹配到对应的路由，返回404错误

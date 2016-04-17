@@ -17,6 +17,9 @@
                         "transform": "react-transform-catch-errors",
                         "imports": ["react", "redbox-react"]
                     }]
+                }],
+                ["react-intl", {
+                    "messagesDir": "./extracted-messages/"
                 }]
             ]
         }

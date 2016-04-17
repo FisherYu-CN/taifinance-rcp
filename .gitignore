@@ -1,5 +1,6 @@
 .idea/
 node_modules/
+extracted-messages/
 dist/
 *.iml
 webpack-assets.json
