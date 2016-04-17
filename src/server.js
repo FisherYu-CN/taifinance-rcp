@@ -24,19 +24,6 @@ import Html from './helpers/Html';
 import getRoutes from './routes';
 import zhMessages from './i18n/zh';
 
-// 获取国际化文件数据
-//const translations = globSync('./src/i18n/*.js')
-//    .map((filename) => [
-//        path.basename(filename, '.json'),
-//        readFileSync(filename, 'utf8'),
-//    ])
-//    .map(([locale, file]) => [locale, JSON.parse(file)])
-//    .reduce((collection, [locale, messages]) => {
-//        collection[locale] = messages;
-//        return collection;
-//    }, {});
-
-
 // 创建代理到API server的代理服务，并支持websocket请求
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const proxy = httpProxy.createProxyServer({
