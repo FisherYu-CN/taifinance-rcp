@@ -28,7 +28,7 @@ const formatUrl = (path) => {
     return '/api' + adjustedPath;
 };
 
-class _ApiClient {
+export default class ApiClient {
 
     constructor(req) {
 
@@ -57,10 +57,5 @@ class _ApiClient {
                     // 设置请求处理的回调
                     request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
                 }));
-
     }
 }
-
-const ApiClient = _ApiClient;
-
-export default ApiClient;
