@@ -1,9 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {intlShape, defineMessages} from 'react-intl';
 import Helmet from 'react-helmet';
 import BodyClassName from 'react-body-classname';
 import {Input, ButtonInput} from 'react-bootstrap/lib';
 import {Link} from 'react-router';
+import {reduxForm} from 'redux-form';
+import {FormGroup} from 'components';
+import signinValidation from './SigninValidation';
 
 // 定义国际化信息
 const messages = defineMessages({
@@ -41,19 +44,26 @@ const messages = defineMessages({
     }
 });
 
+@reduxForm({
+    form: 'signin',
+    fields: ['username', 'password'],
+    validate: signinValidation
+})
 export default class Signin extends Component {
 
 	static propTypes = {
-        intl: intlShape                           // 国际化API
+        intl: intlShape,                                // 国际化API
+        fields: PropTypes.object.isRequired,           // 表单字段
+        handleSubmit: PropTypes.func.isRequired        // 提交表单函数
     };
 
-    handleSubmit = () => {
+    submitForm = () => {
         alert('haha');
     }
 
     render() {
 
-        const {formatMessage} = this.props.intl;
+        const {intl: {formatMessage}, fields: {username, password}, handleSubmit} = this.props;
 
         return (
         	<BodyClassName className="gray-bg">
@@ -63,12 +73,12 @@ export default class Signin extends Component {
 	                	<h1 className="logo-name">TF</h1>
 	                	<h3>{formatMessage(messages.signinTitle)}</h3>
                         <p>Risk Control Platform</p>
-                        <form className="m-t" onSubmit={this.handleSubmit} noValidate>
-                            <div className="form-group">
+                        <form className="m-t" onSubmit={handleSubmit(this.submitForm)} noValidate>
+                            <FormGroup field={username}>
                                 <Input type="text" placeholder={formatMessage(messages.signinInputUsername)} />
-                            </div>
+                            </FormGroup>
                             <div className="form-group">
-                                <Input type="text" placeholder={formatMessage(messages.signinInputPassword)} />
+                                <Input type="text" placeholder={formatMessage(messages.signinInputPassword)} {...password} />
                             </div>
                             <ButtonInput type="submit" bsStyle="primary" className="block full-width m-b" value={formatMessage(messages.signinInputSignin)} />
                             <Link to="/forgot">

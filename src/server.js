@@ -76,11 +76,6 @@ const pretty = new PrettyError();
 
 app.use((req, res) => {
 
-    // 根据请求的locale来获取相应的国际化配置
-    const locale = 'zh';
-    const messages = zhMessages;
-    const i18n = {locale, messages};
-
     // 清除webpack缓存数据，因为开发环境中启用了热重载，脚本文件会被替换
     if (__DEVELOPMENT__) {
         webpackIsomorphicTools.refresh();
@@ -124,7 +119,7 @@ app.use((req, res) => {
                 // 初始化组件
                 const component = (
                     <Provider store={store} key="provider">
-                        <IntlProvider locale={i18n.locale} messages={i18n.messages}>
+                        <IntlProvider locale="zh" messages={zhMessages}>
                             <ReduxAsyncConnect {...renderProps} />
                         </IntlProvider>
                     </Provider>
