@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import {FormGroup as BsFormGroup} from 'react-bootstrap/lib';
 
 export default class FormGroup extends Component {
 
@@ -15,17 +16,17 @@ export default class FormGroup extends Component {
 
         const {field, children} = this.props;
 
-        let formGroupClass = classNames({
+        const formGroupClass = classNames({
             'form-group': true,
             'has-error': field.touched && field.invalid
         });
 
         return (
-            <div className={formGroupClass}>
+            <BsFormGroup bsClass={formGroupClass}>
                 {React.Children.map(children, element => {
                     return React.cloneElement(element, {...field});
                 })}
-            </div>
+            </BsFormGroup>
         );
     }
 }

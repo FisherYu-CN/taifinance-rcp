@@ -886,6 +886,16 @@ button.DTTT_button:hover:not(.DTTT_disabled), div.DTTT_button:hover:not(.DTTT_di
   color: $red;
 }
 
+.error-text {
+    display: none;
+}
+.has-error .help-block.error-text {
+    display: block;
+}
+.has-error .help-inline.error-text {
+    display: inline;
+}
+
 .input-group-addon {
   background-color: white;
   border: 1px solid #e5e6e7;

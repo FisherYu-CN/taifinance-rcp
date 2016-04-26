@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Collapse from 'react-bootstrap/lib/Collapse';
+import classNames from 'classnames';
 
 export default class SidebarNavItem extends Component {
 
@@ -104,8 +105,10 @@ export default class SidebarNavItem extends Component {
             }
         }
 
+        const navItemClass = classNames(styles.sidebarNavItem, {'active': active});
+
         return (
-            <li className={styles.sidebarNavItem + (active ? ' active' : '')}>
+            <li className={navItemClass}>
                 <a href={href} onClick={(event) => this.selectSidebarNavItem(event)}>
                     { /* 菜单项图标, 第一层菜单需要渲染图标 */ }
                     {iconClass && level === 1 && <i className={'fa ' + iconClass}></i>}

@@ -7,3 +7,4 @@ export SidebarNavItem from './SidebarNavItem/SidebarNavItem';
 export Breadcrumb from './Breadcrumb/Breadcrumb';
 export Footer from './Footer/Footer';
 export FormGroup from './FormGroup/FormGroup';
+export FormGroupError from './FormGroupError/FormGroupError';

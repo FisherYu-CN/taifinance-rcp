@@ -2,10 +2,10 @@ import React, {Component, PropTypes} from 'react';
 import {intlShape, defineMessages} from 'react-intl';
 import Helmet from 'react-helmet';
 import BodyClassName from 'react-body-classname';
-import {Input, ButtonInput} from 'react-bootstrap/lib';
 import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
-import {FormGroup} from 'components';
+import {FormControl, Button} from 'react-bootstrap/lib';
+import {FormGroup, FormGroupError} from 'components';
 import signinValidation from './SigninValidation';
 
 // 定义国际化信息
@@ -75,12 +75,14 @@ export default class Signin extends Component {
                         <p>Risk Control Platform</p>
                         <form className="m-t" onSubmit={handleSubmit(this.submitForm)} noValidate>
                             <FormGroup field={username}>
-                                <Input type="text" placeholder={formatMessage(messages.signinInputUsername)} />
+                                <FormControl type="text" placeholder={formatMessage(messages.signinInputUsername)} />
+                                <FormGroupError type="required" message="Test" />
                             </FormGroup>
-                            <div className="form-group">
-                                <Input type="text" placeholder={formatMessage(messages.signinInputPassword)} {...password} />
-                            </div>
-                            <ButtonInput type="submit" bsStyle="primary" className="block full-width m-b" value={formatMessage(messages.signinInputSignin)} />
+                            <FormGroup field={password}>
+                                <FormControl type="text" placeholder={formatMessage(messages.signinInputPassword)} />
+                                <FormGroupError type="required" message="Test" />
+                            </FormGroup>
+                            <Button type="submit" bsStyle="primary" className="full-width m-b">{formatMessage(messages.signinInputSignin)}</Button>
                             <Link to="/forgot">
                                 <small>{formatMessage(messages.signinLinkForgot)}</small>
                             </Link>
