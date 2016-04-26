@@ -63,7 +63,7 @@ export default class Signin extends Component {
 
     render() {
 
-        const {intl: {formatMessage}, fields: {username, password}, handleSubmit} = this.props;
+        const {intl: {formatMessage}, fields: {username, password}, handleSubmit, ...props} = this.props;
 
         return (
         	<BodyClassName className="gray-bg">
@@ -74,11 +74,11 @@ export default class Signin extends Component {
 	                	<h3>{formatMessage(messages.signinTitle)}</h3>
                         <p>Risk Control Platform</p>
                         <form className="m-t" onSubmit={handleSubmit(this.submitForm)} noValidate>
-                            <FormGroup field={username}>
+                            <FormGroup field={username} {...props}>
                                 <FormControl type="text" placeholder={formatMessage(messages.signinInputUsername)} />
                                 <FormGroupError type="required" message="Test" />
                             </FormGroup>
-                            <FormGroup field={password}>
+                            <FormGroup field={password} {...props}>
                                 <FormControl type="text" placeholder={formatMessage(messages.signinInputPassword)} />
                                 <FormGroupError type="required" message="Test" />
                             </FormGroup>

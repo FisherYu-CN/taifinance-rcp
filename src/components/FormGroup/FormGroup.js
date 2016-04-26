@@ -5,6 +5,7 @@ import {FormGroup as BsFormGroup} from 'react-bootstrap/lib';
 export default class FormGroup extends Component {
 
     static propTypes = {
+        submitFailed: PropTypes.bool,                       // 表单提交是否失败
         field: PropTypes.object.isRequired,                // 表单字段
         children: PropTypes.oneOfType([                     // 具体控件
             PropTypes.element,
@@ -14,11 +15,11 @@ export default class FormGroup extends Component {
 
     render() {
 
-        const {field, children} = this.props;
+        const {submitFailed, field, children} = this.props;
 
         const formGroupClass = classNames({
             'form-group': true,
-            'has-error': field.touched && field.invalid
+            'has-error': submitFailed && field.invalid
         });
 
         return (
