@@ -22,9 +22,17 @@ const messages = defineMessages({
         id: 'signin.input.username',
         defaultMessage: 'Username'
     },
+    signinInputUsernameErrorRequired: {
+        id: 'signin.input.username.error.required',
+        defaultMessage: 'Please fill the username'
+    },
     signinInputPassword: {
         id: 'signin.input.password',
         defaultMessage: 'Password'
+    },
+    signinInputPasswordErrorRequired: {
+        id: 'signin.input.password.error.required',
+        defaultMessage: 'Please fill the password'
     },
     signinInputSignin: {
         id: 'signin.input.signin',
@@ -76,11 +84,11 @@ export default class Signin extends Component {
                         <Form onSubmit={handleSubmit(this.submitForm)} showErrorOnlyOnSubmit {...props}>
                             <FormGroup field={username}>
                                 <FormControl type="text" placeholder={formatMessage(messages.signinInputUsername)} />
-                                <FormGroupError type="required" message="Test" />
+                                <FormGroupError type="required" message={formatMessage(messages.signinInputUsernameErrorRequired)} />
                             </FormGroup>
                             <FormGroup field={password}>
                                 <FormControl type="text" placeholder={formatMessage(messages.signinInputPassword)} />
-                                <FormGroupError type="required" message="Test" />
+                                <FormGroupError type="required" message={formatMessage(messages.signinInputPasswordErrorRequired)} />
                             </FormGroup>
                             <Button type="submit" bsStyle="primary" className="full-width m-b">{formatMessage(messages.signinInputSignin)}</Button>
                             <Link to="/forgot">
