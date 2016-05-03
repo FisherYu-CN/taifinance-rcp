@@ -5,7 +5,7 @@ import BodyClassName from 'react-body-classname';
 import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
 import {FormControl, Button} from 'react-bootstrap/lib';
-import {FormGroup, FormGroupError} from 'components';
+import {Form, FormGroup, FormGroupError} from 'components';
 import signinValidation from './SigninValidation';
 
 // 定义国际化信息
@@ -73,12 +73,12 @@ export default class Signin extends Component {
 	                	<h1 className="logo-name">TF</h1>
 	                	<h3>{formatMessage(messages.signinTitle)}</h3>
                         <p>Risk Control Platform</p>
-                        <form className="m-t" onSubmit={handleSubmit(this.submitForm)} noValidate>
-                            <FormGroup field={username} {...props}>
+                        <Form onSubmit={handleSubmit(this.submitForm)} showErrorOnlyOnSubmit {...props}>
+                            <FormGroup field={username}>
                                 <FormControl type="text" placeholder={formatMessage(messages.signinInputUsername)} />
                                 <FormGroupError type="required" message="Test" />
                             </FormGroup>
-                            <FormGroup field={password} {...props}>
+                            <FormGroup field={password}>
                                 <FormControl type="text" placeholder={formatMessage(messages.signinInputPassword)} />
                                 <FormGroupError type="required" message="Test" />
                             </FormGroup>
@@ -92,7 +92,7 @@ export default class Signin extends Component {
                                     <small>{formatMessage(messages.signinLinkRegister)}</small>
                                 </Link>
                             </p>
-                        </form>
+                        </Form>
 	    			</div>
 	    		</div>
         	</BodyClassName>

@@ -6,8 +6,8 @@ export default class FormControlError extends Component {
 
     static propTypes = {
         type: PropTypes.string.isRequired,                  // 错误类型
-        message: PropTypes.string.isRequired,              // 错误信息
-        error: PropTypes.string                             // 表单错误
+        message: PropTypes.string.isRequired,               // 错误信息
+        error: PropTypes.string                              // 表单错误
     };
 
     render() {
