@@ -55,12 +55,12 @@ export default function reducer(state = initialState, action = {}) {
         }
 
         // 登录成功
-        case SIGNIN_SUCCESS:
-        {
+        case SIGNIN_SUCCESS: {
             return {
                 ...state,
                 signingIn: false,
-                user: action.result
+                user: action.result,
+                signinError: null
             };
         }
 
@@ -70,7 +70,7 @@ export default function reducer(state = initialState, action = {}) {
                 ...state,
                 signingIn: false,
                 user: null,
-                loginError: action.error
+                signinError: action.error
             };
         }
 
@@ -87,7 +87,8 @@ export default function reducer(state = initialState, action = {}) {
             return {
                 ...state,
                 signingOut: false,
-                user: null
+                user: null,
+                signoutError: null
             };
         }
 

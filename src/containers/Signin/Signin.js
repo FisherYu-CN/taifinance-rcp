@@ -2,10 +2,13 @@ import React, {Component, PropTypes} from 'react';
 import {intlShape, defineMessages} from 'react-intl';
 import Helmet from 'react-helmet';
 import BodyClassName from 'react-body-classname';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
 import {FormControl, Button} from 'react-bootstrap/lib';
 import {Form, FormGroup, FormGroupError} from 'components';
+import * as authActions from 'redux/modules/auth';
 import signinValidation from './SigninValidation';
 
 // 定义国际化信息
@@ -52,6 +55,12 @@ const messages = defineMessages({
     }
 });
 
+@connect(
+    state => ({
+        signinError: state.auth.signinError
+    }),
+    dispatch => bindActionCreators(authActions, dispatch)
+)
 @reduxForm({
     form: 'signin',
     fields: ['username', 'password'],
@@ -60,13 +69,15 @@ const messages = defineMessages({
 export default class Signin extends Component {
 
 	static propTypes = {
+        signin: PropTypes.func,                          // 登录ActionCreator
         intl: intlShape,                                // 国际化API
         fields: PropTypes.object.isRequired,           // 表单字段
         handleSubmit: PropTypes.func.isRequired        // 提交表单函数
     };
 
     submitForm = () => {
-        alert('haha');
+        const {signin, fields: {username, password}} = this.props;
+        signin(username.value, password.value);
     }
 
     render() {
@@ -87,7 +98,7 @@ export default class Signin extends Component {
                                 <FormGroupError type="required" message={formatMessage(messages.signinInputUsernameErrorRequired)} />
                             </FormGroup>
                             <FormGroup field={password}>
-                                <FormControl type="text" placeholder={formatMessage(messages.signinInputPassword)} />
+                                <FormControl type="password" placeholder={formatMessage(messages.signinInputPassword)} />
                                 <FormGroupError type="required" message={formatMessage(messages.signinInputPasswordErrorRequired)} />
                             </FormGroup>
                             <Button type="submit" bsStyle="primary" className="full-width m-b">{formatMessage(messages.signinInputSignin)}</Button>
