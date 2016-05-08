@@ -5,6 +5,7 @@ const LOAD_FAIL = 'taifinance-rcp/auth/LOAD_FAIL';
 const SIGNIN = 'taifinance-rcp/auth/SIGNIN';
 const SIGNIN_SUCCESS = 'taifinance-rcp/auth/SIGNIN_SUCCESS';
 const SIGNIN_FAIL = 'taifinance-rcp/auth/SIGNIN_FAIL';
+const CLEAR_SIGNIN_ERROR = 'taifinance-rcp/auth/CLEAR_SIGNIN_ERROR';
 const SIGNOUT = 'taifinance-rcp/auth/SIGNOUT';
 const SIGNOUT_SUCCESS = 'taifinance-rcp/auth/SIGNOUT_SUCCESS';
 const SIGNOUT_FAIL = 'taifinance-rcp/auth/SIGNOUT_FAIL';
@@ -71,6 +72,14 @@ export default function reducer(state = initialState, action = {}) {
                 signingIn: false,
                 user: null,
                 signinError: action.error
+            };
+        }
+
+        // 清除登录错误信息
+        case CLEAR_SIGNIN_ERROR: {
+            return {
+                ...state,
+                signinError: null
             };
         }
 
@@ -144,6 +153,17 @@ export function signin(name, password) {
                 password: password
             }
         })
+    };
+}
+
+/**
+ * 清除登录错误信息
+ *
+ * @return {Object} 清除登录错误信息Action
+ */
+export function clearSigninError() {
+    return {
+        type: CLEAR_SIGNIN_ERROR
     };
 }
 

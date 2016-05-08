@@ -9,3 +9,4 @@ export Footer from './Footer/Footer';
 export Form from './Form/Form';
 export FormGroup from './FormGroup/FormGroup';
 export FormGroupError from './FormGroupError/FormGroupError';
+export FormAlert from './FormAlert/FormAlert';

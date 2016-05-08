@@ -16,21 +16,24 @@ export function loadAuth(req) {
  */
 export function signin(req) {
 
-    // 暂时模拟一个用户登录过程, 假定用户名/密码为rcpuser/rcpuser
-    // 当用户名/密码正确时返回用户信息，否则返回错误信息
-    const username = req.body.name;
-    const password = req.body.password;
+    return new Promise((resolve, reject) => {
 
-    if (username === 'rcpuser' && password === 'rcpuser') {
-        const user = {
-            name: req.body.name,
-            password: req.body.password
-        };
-        req.session.user = user;
-        return Promise.resolve(user);
-    }
+        // 暂时模拟一个用户登录过程, 假定用户名/密码为rcpuser/rcpuser
+        // 当用户名/密码正确时返回用户信息，否则返回错误信息
+        const username = req.body.name;
+        const password = req.body.password;
 
-    return Promise.reject('用户名密码不正确');
+        if (username === 'rcpuser' && password === 'rcpuser') {
+            const user = {
+                name: req.body.name,
+                password: req.body.password
+            };
+            req.session.user = user;
+            resolve(user);
+        } else {
+            reject('用户名或密码错误');
+        }
+    });
 }
 
 /**

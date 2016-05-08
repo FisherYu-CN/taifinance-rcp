@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
 import {FormControl, Button} from 'react-bootstrap/lib';
-import {Form, FormGroup, FormGroupError} from 'components';
+import {Form, FormGroup, FormGroupError, FormAlert} from 'components';
 import * as authActions from 'redux/modules/auth';
 import signinValidation from './SigninValidation';
 
@@ -69,10 +69,12 @@ const messages = defineMessages({
 export default class Signin extends Component {
 
 	static propTypes = {
-        signin: PropTypes.func,                          // 登录ActionCreator
-        intl: intlShape,                                // 国际化API
-        fields: PropTypes.object.isRequired,           // 表单字段
-        handleSubmit: PropTypes.func.isRequired        // 提交表单函数
+        signin: PropTypes.func,                            // 登录ActionCreator
+        intl: intlShape,                                   // 国际化API
+        fields: PropTypes.object.isRequired,              // 表单字段
+        handleSubmit: PropTypes.func.isRequired,         // 提交表单函数
+        signinError: PropTypes.string,                     // 登录错误
+        clearSigninError: PropTypes.func.isRequired      // 清除登录错误
     };
 
     submitForm = () => {
@@ -82,7 +84,7 @@ export default class Signin extends Component {
 
     render() {
 
-        const {intl: {formatMessage}, fields: {username, password}, handleSubmit, ...props} = this.props;
+        const {intl: {formatMessage}, fields: {username, password}, handleSubmit, signinError, clearSigninError, ...props} = this.props;
 
         return (
         	<BodyClassName className="gray-bg">
@@ -111,6 +113,7 @@ export default class Signin extends Component {
                                     <small>{formatMessage(messages.signinLinkRegister)}</small>
                                 </Link>
                             </p>
+                            <FormAlert errorMessage={signinError} clearMessage={clearSigninError} />
                         </Form>
 	    			</div>
 	    		</div>
